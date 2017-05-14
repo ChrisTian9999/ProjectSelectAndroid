@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">选题系统</string>
+
+    <string name="app_name_long">毕业生选题系统</string>
+    <string name="splash_code_by">Code By ChrisTian</string>
+</resources>
