@@ -12,6 +12,7 @@ import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.StuLoginResult;
 
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -20,6 +21,7 @@ public interface StudentDataService {
     /**
      * 登录
      */
+    @FormUrlEncoded
     @POST("student/login")
     Observable<BaseResponse<StuLoginResult>> postLogin(@Field("sno") String sno, @Field("pwd") String pwd);
 

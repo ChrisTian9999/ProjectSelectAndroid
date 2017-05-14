@@ -6,11 +6,12 @@ import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 
+import com.chris.pss.R;
 import com.wang.avi.AVLoadingIndicatorView;
-import com.wang.avi.indicators.LineSpinFadeLoaderIndicator;
 
 
 /**
@@ -49,12 +50,12 @@ public class ProgressDialogHandler extends Handler {
             mProgressDialog.setCanceledOnTouchOutside(false);
 
             Window window = mProgressDialog.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             window.setBackgroundDrawable(new ColorDrawable());
 
-            AVLoadingIndicatorView loadingView = new AVLoadingIndicatorView(context);
-            loadingView.setIndicator(new LineSpinFadeLoaderIndicator());
-            mProgressDialog.setContentView(loadingView);
+
+            View view = LayoutInflater.from(context).inflate(R.layout.layout_dialog_loading, null);
+            mProgressDialog.setContentView(view);
+            AVLoadingIndicatorView loadingView = (AVLoadingIndicatorView) view.findViewById(R.id.av_loading_view);
             loadingView.show();
 
             if (cancelable && mProgressCancelListener != null) {

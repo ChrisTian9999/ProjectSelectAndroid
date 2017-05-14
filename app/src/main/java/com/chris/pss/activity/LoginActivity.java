@@ -10,6 +10,14 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.chris.pss.R;
+import com.chris.pss.app.IApp;
+import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.StuLoginResult;
+import com.chris.pss.data.service.StudentDataHttpRequest;
+import com.chris.pss.utils.LogUtils;
+import com.chris.pss.utils.ToastUtils;
+import com.chris.pss.widgets.subscribers.GeneralSubscriber;
+import com.chris.pss.widgets.subscribers.ProgressSubscriber;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,10 +26,11 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
+
     @BindView(R.id.et_no)
     EditText mEtNo;
     @BindView(R.id.et_pwd)
-    EditText mEtpwd;
+    EditText mEtPwd;
     @BindView(R.id.cb_eye)
     CheckBox mCbEye;
 
@@ -38,12 +47,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    mEtpwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    mEtPwd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 } else {
-                    mEtpwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    mEtPwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
             }
         });
+        //
+        mEtNo.setText("201301");
+        mEtPwd.setText("123456");
     }
 
     @OnClick({R.id.rl_eye, R.id.btn_login_tch, R.id.btn_login_stu})
@@ -53,10 +65,59 @@ public class LoginActivity extends AppCompatActivity {
                 mCbEye.setChecked(!mCbEye.isChecked());
                 break;
             case R.id.btn_login_tch:
+                loginTeacher();
                 break;
             case R.id.btn_login_stu:
+                loginStudent();
                 break;
         }
+    }
+
+    public void loginTeacher() {
+        String tno = mEtNo.getText().toString().trim();
+        String pwd = mEtPwd.getText().toString().trim();
+        if (!checkIfOk(tno, pwd)) {
+            return;
+        }
+
+    }
+
+    public void loginStudent() {
+        String sno = mEtNo.getText().toString().trim();
+        String pwd = mEtPwd.getText().toString().trim();
+        if (!checkIfOk(sno, pwd)) {
+            return;
+        }
+        StudentDataHttpRequest.newInstance(IApp.context)
+                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<StuLoginResult>>() {
+                    @Override
+                    public void onNext(BaseResponse<StuLoginResult> response) {
+                        StuLoginResult stuLoginResult = response.getData();
+                        LogUtils.e(stuLoginResult);
+                        ToastUtils.showToast("登录成功");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.showToast(e.getMessage());
+                    }
+                }, LoginActivity.this), sno, pwd);
+    }
+
+
+    /**
+     * 检验账号密码是否符合规则
+     */
+    public boolean checkIfOk(String account, String pwd) {
+        if (account.length() <= 0) {
+            ToastUtils.showToast(R.string.login_hint_no);
+            return false;
+        }
+        if (pwd.length() <= 0) {
+            ToastUtils.showToast(R.string.login_hint_pwd);
+            return false;
+        }
+        return true;
     }
 }
 

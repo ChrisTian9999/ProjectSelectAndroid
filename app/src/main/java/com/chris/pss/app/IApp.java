@@ -10,6 +10,7 @@ import android.content.Context;
 public class IApp extends Application {
 
     public static Context context;
+    public static boolean isDebug = true;
 
     @Override
     public void onCreate() {

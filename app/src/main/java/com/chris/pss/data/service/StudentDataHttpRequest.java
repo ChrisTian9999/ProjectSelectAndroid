@@ -26,7 +26,7 @@ public class StudentDataHttpRequest extends HttpRequest {
         mStudentDataService = retrofit.create(StudentDataService.class);
     }
 
-    public static StudentDataHttpRequest getInstance(Context context) {
+    public static StudentDataHttpRequest newInstance(Context context) {
         if (instants == null) {
             instants = new StudentDataHttpRequest(context);
         }

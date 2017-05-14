@@ -2,6 +2,8 @@ package com.chris.pss.widgets.subscribers;
 
 import android.content.Context;
 
+import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.interceptor.ApiException;
 import com.chris.pss.widgets.progress.ProgressCancelListener;
 import com.chris.pss.widgets.progress.ProgressDialogHandler;
 
@@ -87,6 +89,17 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onNext(T t) {
         if (mGeneralSubscriber != null) {
+            if (t == null) {
+                mGeneralSubscriber.onError(new NullPointerException("返回数据异常"));
+                return;
+            }
+            if (t instanceof BaseResponse) {
+                BaseResponse response = (BaseResponse) t;
+                if (response.getCode() != 200) {
+                    mGeneralSubscriber.onError(new ApiException(response.getMsg(), response.getCode()));
+                    return;
+                }
+            }
             mGeneralSubscriber.onNext(t);
         }
     }
