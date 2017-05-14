@@ -44,6 +44,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
+                overridePendingTransition(R.anim.anim_alpha_show, R.anim.anim_alpha_stay);
             }
         }, DURATION_JUMP);
     }

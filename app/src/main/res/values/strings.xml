@@ -3,4 +3,8 @@
 
     <string name="app_name_long">毕业生选题系统</string>
     <string name="splash_code_by">Code By ChrisTian</string>
+    <string name="login_hint_no">请输入账号</string>
+    <string name="login_hint_pwd">请输入密码</string>
+    <string name="login_by_tch">教师登录</string>
+    <string name="login_by_stu">学生登录</string>
 </resources>
