@@ -6,15 +6,15 @@ import java.util.List;
  * Created by noonecode on 2017/5/15.
  */
 
-public class TchLoginEntity {
+public class TchLoginResult {
     private TchEntity tch;
     private DepartEntity depart;
     private List<DepartEntity> extras;
 
-    public TchLoginEntity() {
+    public TchLoginResult() {
     }
 
-    public TchLoginEntity(TchEntity tch, DepartEntity depart, List<DepartEntity> extras) {
+    public TchLoginResult(TchEntity tch, DepartEntity depart, List<DepartEntity> extras) {
         this.tch = tch;
         this.depart = depart;
         this.extras = extras;
@@ -46,7 +46,7 @@ public class TchLoginEntity {
 
     @Override
     public String toString() {
-        return "TchLoginEntity{" +
+        return "TchLoginResult{" +
                 "tch=" + tch +
                 ", depart=" + depart +
                 ", extras=" + extras +

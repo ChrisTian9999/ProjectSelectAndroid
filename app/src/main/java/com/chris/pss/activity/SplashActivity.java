@@ -3,7 +3,6 @@ package com.chris.pss.activity;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -13,10 +12,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
-    private static final int DURATION_JUMP = 2000;
-    private static final int DURATION_ANIM = 1500;
+    private static final int DURATION_ANIM = 1000;
+    private static final int DURATION_JUMP = DURATION_ANIM + 500;
 
     @BindView(R.id.tv_app_name)
     TextView mTvAppName;

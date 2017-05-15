@@ -1,9 +1,5 @@
 package com.chris.pss.app;
 
-import com.chris.pss.utils.EncryptUtils;
-
-import java.io.UnsupportedEncodingException;
-
 /**
  * Created by noonecode on 2017/5/15.
  */
@@ -17,13 +13,8 @@ public class MyConsts {
      */
     public static final long DURATION_ONLINE = 12000;
 
+    public static final int LOGIN_BY_TEACHER = 0;
+    public static final int LOGIN_BY_STUDENT = 1;
 
-    public static String getEncryptString(String from) {
-        try {
-            return EncryptUtils.encryptAES2HexString(from.getBytes("utf-8"), KEY_AES.getBytes("utf-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+
 }

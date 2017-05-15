@@ -9,7 +9,7 @@
 package com.chris.pss.data.service;
 
 import com.chris.pss.data.entity.BaseResponse;
-import com.chris.pss.data.entity.TchLoginEntity;
+import com.chris.pss.data.entity.TchLoginResult;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -23,7 +23,7 @@ public interface TeacherDataService {
      */
     @FormUrlEncoded
     @POST("teacher/login")
-    Observable<BaseResponse<TchLoginEntity>> postLogin(@Field("tno") String tno, @Field("pwd") String pwd);
+    Observable<BaseResponse<TchLoginResult>> postLogin(@Field("tno") String tno, @Field("pwd") String pwd);
 
 
 }

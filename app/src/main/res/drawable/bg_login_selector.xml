@@ -4,13 +4,13 @@
     <item android:state_pressed="true">
         <shape>
             <corners android:radius="4dp"/>
-            <solid android:color="@color/colorPrimaryDarker"/>
+            <solid android:color="@color/colorPrimaryDark2Pre"/>
         </shape>
     </item>
     <item>
         <shape>
             <corners android:radius="4dp"/>
-            <solid android:color="@color/colorPrimaryDark"/>
+            <solid android:color="@color/colorPrimaryDark2"/>
         </shape>
     </item>
 

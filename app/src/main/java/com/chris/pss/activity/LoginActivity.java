@@ -1,8 +1,8 @@
 package com.chris.pss.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
 import android.widget.CheckBox;
@@ -11,9 +11,10 @@ import android.widget.EditText;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
+import com.chris.pss.app.SimpleUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.StuLoginResult;
-import com.chris.pss.data.entity.TchLoginEntity;
+import com.chris.pss.data.entity.TchLoginResult;
 import com.chris.pss.data.service.StudentDataHttpRequest;
 import com.chris.pss.data.service.TeacherDataHttpRequest;
 import com.chris.pss.utils.LogUtils;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
 
     @BindView(R.id.et_no)
@@ -55,9 +56,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        //
-        mEtNo.setText("t201301");
-        mEtPwd.setText("123456");
     }
 
     @OnClick({R.id.rl_eye, R.id.btn_login_tch, R.id.btn_login_stu})
@@ -67,9 +65,13 @@ public class LoginActivity extends AppCompatActivity {
                 mCbEye.setChecked(!mCbEye.isChecked());
                 break;
             case R.id.btn_login_tch:
+                mEtNo.setText("t001");
+                mEtPwd.setText("123456");
                 loginTeacher();
                 break;
             case R.id.btn_login_stu:
+                mEtNo.setText("201301");
+                mEtPwd.setText("123456");
                 loginStudent();
                 break;
         }
@@ -82,11 +84,12 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         TeacherDataHttpRequest.newInstance(IApp.context)
-                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TchLoginEntity>>() {
+                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TchLoginResult>>() {
                     @Override
-                    public void onNext(BaseResponse<TchLoginEntity> entity) {
-                        LogUtils.e(entity);
-                        ToastUtils.showToast("登录成功");
+                    public void onNext(BaseResponse<TchLoginResult> response) {
+                        LogUtils.e(response);
+                        ToastUtils.showToast(SimpleUtils.getWelcomeString(response.getData().getTch()));
+                        loginSuc(response.getData());
                     }
 
                     @Override
@@ -94,8 +97,19 @@ public class LoginActivity extends AppCompatActivity {
                         ToastUtils.showToast(e.getMessage());
                     }
                 }, LoginActivity.this), tno, pwd);
+    }
 
-
+    /**
+     * 教师登录成功
+     */
+    private void loginSuc(TchLoginResult result) {
+        IApp.tch = result.getTch();
+        IApp.depart = result.getDepart();
+        IApp.extras = result.getExtras();
+        //跳转到教师页面
+        Intent intent = new Intent(this, TeacherActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void loginStudent() {
@@ -108,9 +122,9 @@ public class LoginActivity extends AppCompatActivity {
                 .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<StuLoginResult>>() {
                     @Override
                     public void onNext(BaseResponse<StuLoginResult> response) {
-                        StuLoginResult stuLoginResult = response.getData();
-                        LogUtils.e(stuLoginResult);
-                        ToastUtils.showToast("登录成功");
+                        LogUtils.e(response);
+                        ToastUtils.showToast(SimpleUtils.getWelcomeString(response.getData().getStud()));
+                        loginSuc(response.getData());
                     }
 
                     @Override
@@ -118,6 +132,16 @@ public class LoginActivity extends AppCompatActivity {
                         ToastUtils.showToast(e.getMessage());
                     }
                 }, LoginActivity.this), sno, pwd);
+    }
+
+    private void loginSuc(StuLoginResult result) {
+        IApp.stu = result.getStud();
+        IApp.depart = result.getMajor();
+        IApp.extras = result.getExtras();
+        //跳转到学生页面
+//        Intent intent = new Intent(this, TeacherActivity.class);
+//        startActivity(intent);
+//        finish();
     }
 
 

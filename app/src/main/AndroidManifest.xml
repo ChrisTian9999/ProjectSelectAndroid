@@ -22,11 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--欢迎界面-->
+        <!-- 欢迎界面 -->
         <activity
             android:name=".activity.SplashActivity"
-            android:theme="@style/AppTheme.NoTitle.FullScreen"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -36,10 +35,12 @@
         <activity android:name=".MainActivity"/>
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme.NoTitle.FullScreen"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
+        <activity
+            android:name=".activity.TeacherActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
