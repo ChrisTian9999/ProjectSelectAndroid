@@ -13,7 +13,9 @@ import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.StuLoginResult;
+import com.chris.pss.data.entity.TchLoginEntity;
 import com.chris.pss.data.service.StudentDataHttpRequest;
+import com.chris.pss.data.service.TeacherDataHttpRequest;
 import com.chris.pss.utils.LogUtils;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
@@ -54,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         //
-        mEtNo.setText("201301");
+        mEtNo.setText("t201301");
         mEtPwd.setText("123456");
     }
 
@@ -79,6 +81,20 @@ public class LoginActivity extends AppCompatActivity {
         if (!checkIfOk(tno, pwd)) {
             return;
         }
+        TeacherDataHttpRequest.newInstance(IApp.context)
+                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TchLoginEntity>>() {
+                    @Override
+                    public void onNext(BaseResponse<TchLoginEntity> entity) {
+                        LogUtils.e(entity);
+                        ToastUtils.showToast("登录成功");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.showToast(e.getMessage());
+                    }
+                }, LoginActivity.this), tno, pwd);
+
 
     }
 

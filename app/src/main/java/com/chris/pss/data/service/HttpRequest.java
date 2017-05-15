@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class HttpRequest {
-    private static final String BASE_URL = "http://192.168.1.100:8080/";
+    private static final String BASE_URL = "http://192.168.1.102:8080/";
     private static final long DEFAULT_TIMEOUT = 3000;
     private static final long SIZE_OF_CACHE = 20 * 1024 * 1024; // 20 MiB
 
@@ -41,7 +41,7 @@ public class HttpRequest {
         builder.addInterceptor(new NetworkStatusInterceptor(context));
         builder.addNetworkInterceptor(new LoggingInterceptor());
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        builder.cache(cache);
+//        builder.cache(cache);
         mContext = context;
 
         retrofit = new Retrofit.Builder()

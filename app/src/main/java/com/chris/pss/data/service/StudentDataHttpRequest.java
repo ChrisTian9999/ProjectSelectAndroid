@@ -10,7 +10,9 @@ package com.chris.pss.data.service;
 
 import android.content.Context;
 
+import com.chris.pss.app.MyConsts;
 import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.SimpleCountEntity;
 import com.chris.pss.data.entity.StuLoginResult;
 
 import rx.Observable;
@@ -41,6 +43,22 @@ public class StudentDataHttpRequest extends HttpRequest {
      */
     public void postLogin(Subscriber<BaseResponse<StuLoginResult>> subscriber, String sno, String pwd) {
         Observable<BaseResponse<StuLoginResult>> observable = mStudentDataService.postLogin(sno, pwd);
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 通知在线，并返回当前在线学生数
+     */
+    public void postOnline(Subscriber<BaseResponse<SimpleCountEntity>> subscriber, String sno) {
+        Observable<BaseResponse<SimpleCountEntity>> observable = mStudentDataService.postOnline(sno, MyConsts.DURATION_ONLINE);
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 获得当前在线学生数目
+     */
+    public void getOnlineCount(Subscriber<BaseResponse<SimpleCountEntity>> subscriber) {
+        Observable<BaseResponse<SimpleCountEntity>> observable = mStudentDataService.getOnlineCount(MyConsts.DURATION_ONLINE);
         toSubscribe(observable, subscriber);
     }
 
