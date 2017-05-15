@@ -8,4 +8,6 @@
     <color name="colorTextWhiteHint">#ffaaaaaa</color>
     <color name="colorTextWhite">#ffffffff</color>
     <color name="colorTextHintWhite">#ffaaaaaa</color>
+    <color name="colorDialogLoading">#80ffffff</color>
+    <color name="colorBlack">#FF000000</color>
 </resources>

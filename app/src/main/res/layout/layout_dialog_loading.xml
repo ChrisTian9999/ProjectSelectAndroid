@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.wang.avi.AVLoadingIndicatorView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/av_loading_view"
-    android:layout_width="160dp"
-    android:layout_height="160dp"
-    app:indicatorName="BallPulseSyncIndicator">
-</com.wang.avi.AVLoadingIndicatorView>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shape_dialog_loading"
+    >
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorName="BallSpinFadeLoaderIndicator">
+    </com.wang.avi.AVLoadingIndicatorView>
+</RelativeLayout>
+
