@@ -13,8 +13,8 @@ import butterknife.ButterKnife;
 
 public class SplashActivity extends BaseActivity {
 
-    private static final int DURATION_ANIM = 1000;
-    private static final int DURATION_JUMP = DURATION_ANIM + 500;
+    private static final int DURATION_ANIM = 1200;
+    private static final int DURATION_JUMP = DURATION_ANIM + 200;
 
     @BindView(R.id.tv_app_name)
     TextView mTvAppName;
@@ -27,6 +27,11 @@ public class SplashActivity extends BaseActivity {
         initStatusBar();
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initViews();
     }
 

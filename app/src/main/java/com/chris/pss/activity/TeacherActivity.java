@@ -1,6 +1,5 @@
 package com.chris.pss.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -15,8 +14,9 @@ import android.widget.TextView;
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.fragment.BlankFragment;
+import com.chris.pss.fragment.TeacherAdminFragment;
+import com.chris.pss.fragment.TeacherNotAdminFragment;
 import com.chris.pss.fragment.TeacherProjectListFragment;
-import com.chris.pss.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,9 +84,9 @@ public class TeacherActivity extends BaseActivity
                 break;
             case R.id.nav_admin:
                 if (IApp.tch.getIsAdmin() == 1) {
-                    startActivity(new Intent(this, TeacherAdminActivity.class));
+                    ft.replace(R.id.fl_container, TeacherAdminFragment.newInstance());
                 } else {
-                    ToastUtils.showToast("无权限");
+                    ft.replace(R.id.fl_container, TeacherNotAdminFragment.newInstance());
                 }
                 break;
             default:
