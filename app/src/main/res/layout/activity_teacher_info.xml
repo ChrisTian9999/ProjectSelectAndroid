@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_teacher_info_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/shape_divider"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:showDividers="middle"
+    tools:context="com.chris.pss.activity.TeacherInfoActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolBar"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="账号："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_tno"
+                    style="@style/TvUserInfoValue"
+                    tools:text="123"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="姓名："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_name"
+                    style="@style/TvUserInfoValue"
+                    tools:text="赵老师"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="性别："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_gender"
+                    style="@style/TvUserInfoValue"
+                    tools:text="123"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="职称："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_zhicheng"
+                    style="@style/TvUserInfoValue"
+                    tools:text="教师"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="所属学院："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_depart"
+                    style="@style/TvUserInfoValue"
+                    tools:text="信息工程学院"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="手机号："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_tel"
+                    style="@style/TvUserInfoValue"
+                    tools:text="18100000001"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="邮箱："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_email"
+                    style="@style/TvUserInfoValue"
+                    tools:text="zhao@163.com"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    style="@style/TvUserInfoTitle"
+                    android:text="是否教务员："
+                    />
+
+                <TextView
+                    android:id="@+id/tv_info_is_admin"
+                    style="@style/TvUserInfoValue"
+                    tools:text="否"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

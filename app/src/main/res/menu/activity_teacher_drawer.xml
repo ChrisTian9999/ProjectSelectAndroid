@@ -4,8 +4,9 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
+            android:checked="true"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
+            android:title="@string/menu_teacher_my_project"/>
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"

@@ -15,15 +15,16 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initStatusBar();
     }
 
+    /**
+     * 透明状态栏
+     */
     protected void initStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WindowManager.LayoutParams lp = getWindow().getAttributes();
             lp.flags |= WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
             getWindow().setAttributes(lp);
-
         }
     }
 }

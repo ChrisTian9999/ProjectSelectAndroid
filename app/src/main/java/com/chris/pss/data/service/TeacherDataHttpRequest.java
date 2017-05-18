@@ -44,4 +44,13 @@ public class TeacherDataHttpRequest extends HttpRequest {
         toSubscribe(observable, subscriber);
     }
 
+    /**
+     * 获得教师的信息，包括学院
+     * @param tno 教师号
+     */
+    public void getTchInfo(Subscriber<BaseResponse<TchLoginResult>> subscriber, String tno) {
+        Observable<BaseResponse<TchLoginResult>> observable = mTeacherDataService.getTchInfo(tno);
+        toSubscribe(observable, subscriber);
+    }
+
 }

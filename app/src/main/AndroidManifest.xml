@@ -20,12 +20,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme.NoActionBar">
         <!-- 欢迎界面 -->
         <activity
-            android:name=".activity.SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -33,14 +31,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity
-            android:name=".activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".activity.TeacherActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+        <activity  android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.TeacherActivity"/>
+        <activity android:name=".activity.TeacherInfoActivity"/>
     </application>
 
 </manifest>

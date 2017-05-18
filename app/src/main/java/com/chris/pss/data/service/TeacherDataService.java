@@ -13,7 +13,9 @@ import com.chris.pss.data.entity.TchLoginResult;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import rx.Observable;
 
 public interface TeacherDataService {
@@ -25,5 +27,10 @@ public interface TeacherDataService {
     @POST("teacher/login")
     Observable<BaseResponse<TchLoginResult>> postLogin(@Field("tno") String tno, @Field("pwd") String pwd);
 
+    /**
+     * 获得教师的基本信息，包括学院
+     */
+    @GET("teacher/info/tno/{tno}")
+    Observable<BaseResponse<TchLoginResult>> getTchInfo(@Path("tno") String tno);
 
 }
