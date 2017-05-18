@@ -19,4 +19,6 @@
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="title_info_teacher_info">教师信息</string>
+    <string name="menu_teacher_admin">管理员入口</string>
+    <string name="title_teacher_admin">管理员</string>
 </resources>

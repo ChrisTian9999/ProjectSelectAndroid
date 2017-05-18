@@ -15,6 +15,15 @@ import com.chris.pss.R;
 
 public class BlankFragment extends Fragment {
 
+    public static BlankFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        BlankFragment fragment = new BlankFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -21,9 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
         <!-- 欢迎界面 -->
-        <activity
-            android:name=".activity.SplashActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -31,9 +31,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity  android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.TeacherActivity"/>
         <activity android:name=".activity.TeacherInfoActivity"/>
+        <activity android:name=".activity.TeacherAdminActivity">
+        </activity>
     </application>
 
 </manifest>

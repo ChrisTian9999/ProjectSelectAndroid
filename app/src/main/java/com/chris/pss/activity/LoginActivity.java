@@ -66,7 +66,7 @@ public class LoginActivity extends BaseActivity {
                 mCbEye.setChecked(!mCbEye.isChecked());
                 break;
             case R.id.btn_login_tch:
-                mEtNo.setText("t001");
+                mEtNo.setText("t002");
                 mEtPwd.setText("123456");
                 loginTeacher();
                 break;

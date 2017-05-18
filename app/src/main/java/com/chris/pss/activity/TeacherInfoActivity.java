@@ -100,7 +100,7 @@ public class TeacherInfoActivity extends BaseActivity {
         //
         mTvInfoTel.setText(tch.getTel());
         mTvInfoEmail.setText(tch.getEmail());
-        mTvInfoIsAdmin.setText(tch.getIsAdmin() == 0 ? R.string.yes : R.string.no);
+        mTvInfoIsAdmin.setText(tch.getIsAdmin() == 1 ? R.string.yes : R.string.no);
 
         if (depart == null) {
             ToastUtils.showToast("无学院信息");

@@ -1,5 +1,6 @@
 package com.chris.pss.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
+import com.chris.pss.fragment.BlankFragment;
 import com.chris.pss.fragment.TeacherProjectListFragment;
+import com.chris.pss.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,12 +26,10 @@ public class TeacherActivity extends BaseActivity
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.nav_view)
-    NavigationView mNavView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
-    private View mHeaderView;
-    private TextView mHeaderName;
+    @BindView(R.id.nav_view)
+    NavigationView mNavView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +37,16 @@ public class TeacherActivity extends BaseActivity
         initStatusBar();
         setContentView(R.layout.activity_teacher);
         ButterKnife.bind(this);
+        //
         setSupportActionBar(mToolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        mNavView.setNavigationItemSelectedListener(this);
-        mHeaderView = mNavView.getHeaderView(0);
+        //
+        mNavView.setNavigationItemSelectedListener(TeacherActivity.this);
+        //初始化头部
+        View mHeaderView = mNavView.getHeaderView(0);
         mHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,11 +54,13 @@ public class TeacherActivity extends BaseActivity
                 startActivity(TeacherInfoActivity.getJumpIntent(TeacherActivity.this, tno));
             }
         });
-        mHeaderName = (TextView) mHeaderView.findViewById(R.id.tv_header_name);
+        TextView mHeaderName = (TextView) mHeaderView.findViewById(R.id.tv_header_name);
         mHeaderName.setText(IApp.tch.getName());
+
         //默认打开菜单
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance()).commit();
+        ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance());
+        ft.commit();
     }
 
     @Override
@@ -78,12 +82,19 @@ public class TeacherActivity extends BaseActivity
             case R.id.nav_project_all:
                 ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance());
                 break;
-            default:break;
+            case R.id.nav_admin:
+                if (IApp.tch.getIsAdmin() == 1) {
+                    startActivity(new Intent(this, TeacherAdminActivity.class));
+                } else {
+                    ToastUtils.showToast("无权限");
+                }
+                break;
+            default:
+                ft.replace(R.id.fl_container, BlankFragment.newInstance());
+                break;
         }
         ft.commit();
-        //
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
