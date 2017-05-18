@@ -3,11 +3,28 @@ package com.chris.pss.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.chris.pss.R;
+import com.chris.pss.app.IApp;
+import com.chris.pss.app.SimpleUtils;
+import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.DepartEntity;
+import com.chris.pss.data.service.DepartDataHttpRequest;
+import com.chris.pss.utils.ToastUtils;
+import com.chris.pss.widgets.subscribers.GeneralSubscriber;
+import com.chris.pss.widgets.subscribers.ProgressSubscriber;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,13 +32,19 @@ import com.chris.pss.R;
 public class TeacherAdminFragment extends Fragment {
 
 
+    Unbinder unbinder;
+    @BindView(R.id.recycler)
+    RecyclerView mRecycler;
+    @BindView(R.id.srl_refresh)
+    SwipeRefreshLayout mSrlRefresh;
+
     public TeacherAdminFragment() {
     }
 
     public static TeacherAdminFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         TeacherAdminFragment fragment = new TeacherAdminFragment();
         fragment.setArguments(args);
         return fragment;
@@ -30,7 +53,61 @@ public class TeacherAdminFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_teacher_admin, container, false);
+        View view = inflater.inflate(R.layout.fragment_teacher_admin, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        initViews();
+        return view;
     }
 
+    private void initViews() {
+        mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecycler.setAdapter();
+
+        mSrlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
+    }
+
+    public void fetchDeparts() {
+        DepartDataHttpRequest.newInstance(IApp.context)
+                .getDepartList(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<DepartEntity>>>() {
+                    @Override
+                    public void onNext(BaseResponse<List<DepartEntity>> response) {
+                        List<DepartEntity> departList = response.getData();
+                        if (departList != null) {
+                            //更新全局数据
+                            IApp.extras = departList;
+                            //
+                            List<DepartEntity> majorList = SimpleUtils.getChiledDepartList(IApp.tch.getDepartmentId());
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.showToast(e.getMessage());
+                    }
+                }, getContext()));
+    }
+
+
+    public void refresh() {
+        mSrlRefresh.post(new Runnable() {
+            @Override
+            public void run() {
+                mSrlRefresh.setRefreshing(true);
+
+            }
+        });
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

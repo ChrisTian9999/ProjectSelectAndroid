@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    tools:background="#aaaa"
+    >
+
+    <TextView
+        android:id="@+id/tv_major_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        tools:text="这是一个专业"/>
+
+    <TextView
+        android:id="@+id/tv_major_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_major_name"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/colorTextColorGray"
+        tools:text="2017-01-01 12:12:12"/>
+
+    <TextView
+        android:id="@+id/tv_major_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_major_start"
+        android:textColor="@color/colorTextColorGray"
+        tools:text="2017-01-01 12:12:12"/>
+
+    <Button
+        android:id="@+id/btn_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_login_selector"
+        android:text="@string/btn_admin_modify"
+        android:textColor="@color/colorWhite"/>
+
+</RelativeLayout>

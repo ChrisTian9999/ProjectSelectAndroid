@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--下拉刷新-->
-    <declare-styleable name="JellyRefreshLayout">
-        <attr name="jellyColor" format="color"/>
-        <attr name="headerHeight" format="dimension"/>
-        <attr name="pullHeight" format="dimension"/>
-        <attr name="triggerHeight" format="dimension"/>
-    </declare-styleable>
+
 </resources>

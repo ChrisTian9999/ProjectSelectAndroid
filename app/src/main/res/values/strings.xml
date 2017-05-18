@@ -22,4 +22,6 @@
     <string name="title_teacher_admin">教务管理</string>
     <string name="menu_setting">设置</string>
     <string name="teacher_not_admin">sorry! you are not admin!</string>
+    <string name="loading_text">正在加载中~</string>
+    <string name="btn_admin_modify">修改</string>
 </resources>
