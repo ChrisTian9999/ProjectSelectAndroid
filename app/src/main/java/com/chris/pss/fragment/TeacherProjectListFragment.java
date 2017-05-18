@@ -19,6 +19,13 @@ public class TeacherProjectListFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static TeacherProjectListFragment newInstance() {
+        Bundle args = new Bundle();
+        TeacherProjectListFragment fragment = new TeacherProjectListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

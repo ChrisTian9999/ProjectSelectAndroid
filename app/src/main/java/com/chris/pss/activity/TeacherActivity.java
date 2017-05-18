@@ -1,9 +1,8 @@
 package com.chris.pss.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,19 +13,16 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
+import com.chris.pss.fragment.TeacherProjectListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.chris.pss.R.id.fab;
 
 public class TeacherActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(fab)
-    FloatingActionButton mFab;
     @BindView(R.id.nav_view)
     NavigationView mNavView;
     @BindView(R.id.drawer_layout)
@@ -41,14 +37,6 @@ public class TeacherActivity extends BaseActivity
         setContentView(R.layout.activity_teacher);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -66,6 +54,9 @@ public class TeacherActivity extends BaseActivity
         });
         mHeaderName = (TextView) mHeaderView.findViewById(R.id.tv_header_name);
         mHeaderName.setText(IApp.tch.getName());
+        //默认打开菜单
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance()).commit();
     }
 
     @Override
@@ -82,23 +73,15 @@ public class TeacherActivity extends BaseActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        switch (item.getItemId()) {
+            case R.id.nav_project_all:
+                ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance());
+                break;
+            default:break;
         }
-
+        ft.commit();
+        //
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
