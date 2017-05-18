@@ -23,7 +23,7 @@
 
         <LinearLayout
             android:divider="@drawable/shape_divider"
-            android:showDividers="middle"
+            android:showDividers="middle|end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
