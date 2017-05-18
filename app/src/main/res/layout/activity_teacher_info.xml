@@ -6,10 +6,8 @@
     android:id="@+id/ll_teacher_info_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@drawable/shape_divider"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:showDividers="middle"
     tools:context="com.chris.pss.activity.TeacherInfoActivity">
 
 
@@ -24,6 +22,8 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:divider="@drawable/shape_divider"
+            android:showDividers="middle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

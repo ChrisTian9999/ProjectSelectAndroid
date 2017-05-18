@@ -1,9 +1,9 @@
 package com.chris.pss.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import com.chris.pss.R;
@@ -40,6 +40,7 @@ public class TeacherInfoActivity extends BaseActivity {
     TextView mTvInfoEmail;
     @BindView(R.id.tv_info_is_admin)
     TextView mTvInfoIsAdmin;
+    private String mTno;
 
 
     @Override
@@ -47,36 +48,31 @@ public class TeacherInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_info);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            mTno = intent.getStringExtra("tno");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initViews();
     }
 
     private void initViews() {
-        setSupportActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        mToolbar.setTitle(R.string.title_info_teacher_info);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        initToolBar(mToolbar, R.string.title_info_teacher_info);
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            String tno = intent.getStringExtra("tno");
-            if (IApp.tch.getTno().equals(tno)) {//是当前用户
-                initData(IApp.tch, IApp.depart);
-            }else { //不是当前用户
-                fetchTchInfo(tno);
-            }
-        }else{
-            ToastUtils.showToast("未知错误");
+        if (IApp.tch.getTno().equals(mTno)) {//是当前用户
+            initData(IApp.tch, IApp.depart);
+        }else { //不是当前用户
+            fetchTchInfo(mTno);
         }
-
     }
 
     private void fetchTchInfo(String tno) {
-        TeacherDataHttpRequest.newInstance(this)
+        TeacherDataHttpRequest.newInstance(IApp.context)
                 .getTchInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TchLoginResult>>() {
                     @Override
                     public void onNext(BaseResponse<TchLoginResult> response) {
@@ -88,7 +84,7 @@ public class TeacherInfoActivity extends BaseActivity {
                     public void onError(Throwable e) {
                         ToastUtils.showToast(e.getMessage());
                     }
-                }, IApp.context), tno);
+                },this ), tno);
     }
 
 
@@ -114,8 +110,8 @@ public class TeacherInfoActivity extends BaseActivity {
     }
 
 
-    public static Intent getJumpIntent(String tno) {
-        Intent intent = new Intent();
+    public static Intent getJumpIntent(Context context, String tno) {
+        Intent intent = new Intent(context, TeacherInfoActivity.class);
         intent.putExtra("tno", tno);
         return intent;
     }

@@ -45,6 +45,5 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:popupTheme">@style/AppTheme.PopupOverlay</item>
-        <item name="app:titleTextColor">@color/colorWhite</item>
     </style>
 </resources>

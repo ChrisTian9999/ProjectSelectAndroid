@@ -1,6 +1,5 @@
 package com.chris.pss.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -61,7 +60,8 @@ public class TeacherActivity extends BaseActivity
         mHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, TeacherInfoActivity.class));
+                String tno = IApp.tch.getTno();
+                startActivity(TeacherInfoActivity.getJumpIntent(TeacherActivity.this, tno));
             }
         });
         mHeaderName = (TextView) mHeaderView.findViewById(R.id.tv_header_name);

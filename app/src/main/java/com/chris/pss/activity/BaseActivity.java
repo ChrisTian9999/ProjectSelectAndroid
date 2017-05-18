@@ -4,7 +4,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.WindowManager;
+
+import com.chris.pss.R;
 
 /**
  * Created by noonecode on 2017/5/16.
@@ -26,5 +30,18 @@ public class BaseActivity extends AppCompatActivity {
             lp.flags |= WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
             getWindow().setAttributes(lp);
         }
+    }
+
+    protected void initToolBar(Toolbar toolbar, int idRes) {
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setTitle(idRes);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
