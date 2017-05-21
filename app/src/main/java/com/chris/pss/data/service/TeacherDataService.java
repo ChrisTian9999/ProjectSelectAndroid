@@ -25,7 +25,10 @@ public interface TeacherDataService {
      */
     @FormUrlEncoded
     @POST("teacher/login")
-    Observable<BaseResponse<TchLoginResult>> postLogin(@Field("tno") String tno, @Field("pwd") String pwd);
+    Observable<BaseResponse<TchLoginResult>> postLogin(
+            @Field("tno") String tno,
+            @Field("pwd") String pwd
+    );
 
     /**
      * 获得教师的基本信息，包括学院

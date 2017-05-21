@@ -15,7 +15,7 @@ import java.util.List;
  * Created by zht on 2017/5/19.
  */
 
-public class RvMajorListAdapter extends RecyclerView.Adapter<RvMajorListAdapter.ItemHolder{
+public class RvMajorListAdapter extends RecyclerView.Adapter<RvMajorListAdapter.ItemHolder>{
 
     private Context mContext;
     private List<DepartEntity> mList;
@@ -31,8 +31,8 @@ public class RvMajorListAdapter extends RecyclerView.Adapter<RvMajorListAdapter.
 
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater.from(mContext).inflate(R.layout.layout_depart_item)
-        return new ItemHolder();
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_depart_item, parent, false);
+        return new ItemHolder(view);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class RvMajorListAdapter extends RecyclerView.Adapter<RvMajorListAdapter.
         return 0;
     }
 
-    private static class ItemHolder extends RecyclerView.ViewHolder{
+    static class ItemHolder extends RecyclerView.ViewHolder{
         public ItemHolder(View itemView) {
             super(itemView);
         }

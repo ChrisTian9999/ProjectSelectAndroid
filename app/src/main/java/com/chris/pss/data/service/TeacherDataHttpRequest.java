@@ -35,9 +35,6 @@ public class TeacherDataHttpRequest extends HttpRequest {
 
     /**
      * 登录
-     *
-     * @param tno 教师号
-     * @param pwd 密码
      */
     public void postLogin(Subscriber<BaseResponse<TchLoginResult>> subscriber, String tno, String pwd) {
         Observable<BaseResponse<TchLoginResult>> observable = mTeacherDataService.postLogin(tno, pwd);

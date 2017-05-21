@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">选题系统</string>
 
-    <string name="app_name_long">毕业生选题系统</string>
+    <string name="app_name_long">毕业设计选题系统</string>
     <string name="splash_code_by">Code By ChrisTian</string>
     <string name="login_hint_no">请输入账号</string>
     <string name="login_hint_pwd">请输入密码</string>

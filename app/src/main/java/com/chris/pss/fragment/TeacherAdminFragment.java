@@ -61,7 +61,7 @@ public class TeacherAdminFragment extends Fragment {
 
     private void initViews() {
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycler.setAdapter();
+//        mRecycler.setAdapter();
 
         mSrlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
