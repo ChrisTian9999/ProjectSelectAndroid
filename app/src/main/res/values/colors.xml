@@ -16,4 +16,5 @@
     <color name="colorTextColorGray">#FF888888</color>
     <color name="colorDividerGray">#FF999999</color>
     <color name="colorText">#FF333333</color>
+    <color name="colorRipple">#FFDDDDDD</color>
 </resources>
