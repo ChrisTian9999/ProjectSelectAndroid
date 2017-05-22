@@ -19,6 +19,7 @@ import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.service.DepartDataHttpRequest;
 import com.chris.pss.utils.ToastUtils;
+import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecoration;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
 
@@ -64,6 +65,11 @@ public class TeacherAdminFragment extends Fragment {
 
     private void initViews() {
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecycler.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getContext())
+                .colorResId(R.color.colorDividerGray)
+                .showLastDivider()
+                .build());
+
         mAdapter = new RvMajorListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<DepartEntity>() {
             @Override
             public void OnItemClick(int position, DepartEntity data) {

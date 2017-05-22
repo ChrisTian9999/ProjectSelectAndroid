@@ -35,7 +35,6 @@
         tools:text="2017-01-01 12:12:12"/>
 
     <ImageView
-        android:id="@+id/iv_arrow"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
@@ -46,12 +45,12 @@
     <TextView
         android:id="@+id/tv_major_state"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="16dp"
-        android:layout_toLeftOf="@id/iv_arrow"
-        android:padding="8dp"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/tv_major_name"
+        android:background="@drawable/bg_state_green"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
         tools:text="未开始"/>
 </RelativeLayout>

@@ -13,11 +13,17 @@
     <color name="colorTextHintWhite">#ffaaaaaa</color>
     <color name="colorDialogLoading">#80ffffff</color>
     <color name="colorBlack">#FF000000</color>
+    <!--灰色的字体的颜色-->
     <color name="colorTextColorGray">#FF888888</color>
+    <!--分割线的颜色-->
     <color name="colorDividerGray">#FF999999</color>
-    <color name="colorText">#FF333333</color>
-    <color name="colorRipple">#FFDDDDDD</color>
+    <!--黑色的字体的颜色-->
+    <color name="colorText">#F222</color>
+    <!--水波纹的颜色-->
+    <color name="colorRipple">#FAAA</color>
 
+    <!--开始结束的时间的颜色-->
     <color name="colorStart">#6A6</color>
     <color name="colorEnd">#A66</color>
+    <color name="colorLightGray">#FAAA</color>
 </resources>
