@@ -26,11 +26,12 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
+import com.chris.pss.widgets.recyclerview.animators.animators.holder.AnimateViewHolder;
+import com.chris.pss.widgets.recyclerview.animators.internal.ViewHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.joyea.common.widget.recyclerview.animators.animators.holder.AnimateViewHolder;
-import cn.joyea.common.widget.recyclerview.animators.internal.ViewHelper;
 
 
 public abstract class BaseItemAnimator extends SimpleItemAnimator {

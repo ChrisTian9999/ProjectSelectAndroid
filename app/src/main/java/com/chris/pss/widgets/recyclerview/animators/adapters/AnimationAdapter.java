@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import cn.joyea.common.widget.recyclerview.animators.internal.ViewHelper;
+import com.chris.pss.widgets.recyclerview.animators.internal.ViewHelper;
+
 
 /**
  * Copyright (C) 2017 Wasabeef

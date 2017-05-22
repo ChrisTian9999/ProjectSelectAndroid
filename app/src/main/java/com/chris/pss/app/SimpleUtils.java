@@ -3,7 +3,10 @@ package com.chris.pss.app;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.StuEntity;
 import com.chris.pss.data.entity.TchEntity;
+import com.chris.pss.utils.EmptyUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -13,15 +16,17 @@ import java.util.Locale;
  */
 
 public class SimpleUtils {
-    private static final String DEF_WELCOME_FORMAT = "欢迎您，%s%s";
-    private static final String DEF_WELCOME_STRING = "登录成功";
+
+    public static final String DEF_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+    private static final String DEF_WELCOME_FORMAT = "欢迎您，%s";
 
     public static String getWelcomeString(TchEntity entity) {
-        return String.format(Locale.getDefault(), DEF_WELCOME_FORMAT, entity.getName(), entity.getZhicheng());
+        return String.format(Locale.getDefault(), DEF_WELCOME_FORMAT, entity.getName());
     }
 
     public static String getWelcomeString(StuEntity entity) {
-        return String.format(Locale.getDefault(), DEF_WELCOME_FORMAT, entity.getName(), "同学");
+        return String.format(Locale.getDefault(), DEF_WELCOME_FORMAT, entity.getName());
     }
 
 
@@ -38,5 +43,19 @@ public class SimpleUtils {
             }
         }
         return list;
+    }
+
+
+    /**
+     * 时间字符串转换成为long
+     */
+    public static long getLongDateFromString(String date) {
+        try {
+            if (!EmptyUtils.isEmpty(date)) {
+                return new SimpleDateFormat(DEF_TIME_FORMAT, Locale.getDefault()).parse(date).getTime();
+            }
+        } catch (ParseException e) {
+        }
+        return 0;
     }
 }

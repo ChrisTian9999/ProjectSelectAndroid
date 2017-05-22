@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chris.pss.R;
+import com.chris.pss.adapter.BaseRvAdapter;
+import com.chris.pss.adapter.RvMajorListAdapter;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.SimpleUtils;
 import com.chris.pss.data.entity.BaseResponse;
@@ -37,6 +39,7 @@ public class TeacherAdminFragment extends Fragment {
     RecyclerView mRecycler;
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout mSrlRefresh;
+    private RvMajorListAdapter mAdapter;
 
     public TeacherAdminFragment() {
     }
@@ -61,14 +64,22 @@ public class TeacherAdminFragment extends Fragment {
 
     private void initViews() {
         mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-//        mRecycler.setAdapter();
-
+        mAdapter = new RvMajorListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<DepartEntity>() {
+            @Override
+            public void OnItemClick(int position, DepartEntity data) {
+                ToastUtils.showToast("" + data.getName());
+            }
+        });
+        mRecycler.setAdapter(mAdapter);
+        //
         mSrlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                fetchDeparts();
             }
         });
+        //
+        refresh();
     }
 
     public void fetchDeparts() {
@@ -82,13 +93,15 @@ public class TeacherAdminFragment extends Fragment {
                             IApp.extras = departList;
                             //
                             List<DepartEntity> majorList = SimpleUtils.getChiledDepartList(IApp.tch.getDepartmentId());
-
+                            mAdapter.setList(majorList);
                         }
+                        finishRefresh();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         ToastUtils.showToast(e.getMessage());
+                        finishRefresh();
                     }
                 }, getContext()));
     }
@@ -99,7 +112,16 @@ public class TeacherAdminFragment extends Fragment {
             @Override
             public void run() {
                 mSrlRefresh.setRefreshing(true);
+                fetchDeparts();
+            }
+        });
+    }
 
+    public void finishRefresh() {
+        mSrlRefresh.post(new Runnable() {
+            @Override
+            public void run() {
+                mSrlRefresh.setRefreshing(false);
             }
         });
     }

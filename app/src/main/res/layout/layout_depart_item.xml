@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    tools:background="#aaaa"
+    tools:background="@drawable/bg_item_ripple"
     >
 
     <TextView
@@ -16,13 +16,14 @@
         android:textSize="18sp"
         tools:text="这是一个专业"/>
 
+
     <TextView
         android:id="@+id/tv_major_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_major_name"
         android:layout_marginTop="4dp"
-        android:textColor="@color/colorTextColorGray"
+        android:textColor="@color/colorStart"
         tools:text="2017-01-01 12:12:12"/>
 
     <TextView
@@ -30,18 +31,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_major_start"
-        android:textColor="@color/colorTextColorGray"
+        android:textColor="@color/colorEnd"
         tools:text="2017-01-01 12:12:12"/>
 
-    <Button
-        android:id="@+id/btn_modify"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:textSize="14sp"
-        android:layout_alignParentBottom="true"
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
-        android:background="@drawable/bg_login_selector"
-        android:text="@string/btn_admin_modify"
-        android:textColor="@color/colorWhite"/>
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_arrow_right"/>
 
+
+    <TextView
+        android:id="@+id/tv_major_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@id/iv_arrow"
+        android:padding="8dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
+        tools:text="未开始"/>
 </RelativeLayout>
