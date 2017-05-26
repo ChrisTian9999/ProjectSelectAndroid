@@ -2,12 +2,12 @@ package com.chris.pss.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chris.pss.R;
-import com.chris.pss.app.SimpleUtils;
+import com.chris.pss.app.SimpleDisplayUtils;
 import com.chris.pss.data.entity.DepartEntity;
-import com.chris.pss.utils.EmptyUtils;
 
 import java.util.List;
 
@@ -43,6 +43,10 @@ public class RvMajorListAdapter extends BaseRvAdapter<DepartEntity> {
         TextView mTvMajorEnd;
         @BindView(R.id.tv_major_state)
         TextView mTvState;
+        @BindView(R.id.iv_reset_time)
+        ImageView mIvResetTime;
+        @BindView(R.id.iv_cha_kan)
+        ImageView mIvChaKan;
 
         ViewHolder(View view) {
             super(view);
@@ -53,26 +57,30 @@ public class RvMajorListAdapter extends BaseRvAdapter<DepartEntity> {
         public void setData(int position, final DepartEntity data) {
             mTvMajorName.setText(data.getName());
             //
-            mTvMajorStart.setText(EmptyUtils.isEmpty(data.getTimeBegin()) ? "null" : data.getTimeBegin());
-            mTvMajorEnd.setText(EmptyUtils.isEmpty(data.getTimeEnd()) ? "null" : data.getTimeEnd());
-            //显示状态
-            long start = SimpleUtils.getLongDateFromString(data.getTimeBegin());
-            long end = SimpleUtils.getLongDateFromString(data.getTimeEnd());
-            // 未开始，进行中,已结束
-            long millis = System.currentTimeMillis();
-            if (start <= 0 || end <= 0 || start < end
-                    || millis < start) {//未开始
-                mTvState.setText(R.string.state_before);
-                mTvState.setBackgroundResource(R.drawable.bg_state_black);
-            } else if (millis >= start && millis < end) {
-                mTvState.setText(R.string.state_start);
-                mTvState.setBackgroundResource(R.drawable.bg_state_green);
-            } else if (millis >= end) {
-                mTvState.setText(R.string.state_end);
-                mTvState.setBackgroundResource(R.drawable.bg_state_red);
+            mTvMajorStart.setText(SimpleDisplayUtils.getDisplayMajorTime(data.getTimeBegin()));
+            mTvMajorEnd.setText(SimpleDisplayUtils.getDisplayMajorTime(data.getTimeEnd()));
+
+            int state = SimpleDisplayUtils.getMajorStateByTime(data.getTimeBegin(), data.getTimeEnd());
+            switch (state) {
+                case 1:
+                    mTvState.setText(R.string.state_before);
+                    mTvState.setBackgroundResource(R.drawable.bg_state_black);
+                    break;
+                case 2:
+                    mTvState.setText(R.string.state_start);
+                    mTvState.setBackgroundResource(R.drawable.bg_state_green);
+                    break;
+                case 3:
+                    mTvState.setText(R.string.state_end);
+                    mTvState.setBackgroundResource(R.drawable.bg_state_red);
+                    break;
+                default:
+                    break;
             }
             //监听
             setListener(itemView, position, data, mListener);
+            setListener(mIvResetTime, position, data, mListener);
+            setListener(mIvChaKan, position, data, mListener);
         }
     }
 }
