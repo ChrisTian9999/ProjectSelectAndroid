@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
     android:background="@drawable/bg_item_ripple"
+    android:padding="8dp"
     >
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorText"
-        android:textSize="18sp"
+        android:textSize="20sp"
         tools:text="这是一个专业"/>
 
 
@@ -24,6 +24,7 @@
         android:layout_below="@id/tv_major_name"
         android:layout_marginTop="4dp"
         android:textColor="@color/colorStart"
+        android:textSize="14sp"
         tools:text="2017-01-01 12:12:12"/>
 
     <TextView
@@ -32,15 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_major_start"
         android:textColor="@color/colorEnd"
+        android:textSize="14sp"
         tools:text="2017-01-01 12:12:12"/>
-
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_arrow_right"/>
-
 
     <TextView
         android:id="@+id/tv_major_state"
@@ -55,5 +49,28 @@
         tools:text="未开始"/>
 
 
+    <ImageView
+        android:id="@+id/iv_cha_kan"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_item_ripple"
+        android:padding="4dp"
+        android:clickable="true"
+        android:src="@drawable/bg_admin_cha_kan_selector"
+        />
 
+    <ImageView
+        android:id="@+id/iv_reset_time"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@id/iv_cha_kan"
+        android:padding="4dp"
+        android:clickable="true"
+        android:background="@drawable/bg_item_ripple"
+        android:src="@drawable/bg_reset_time_selector"
+        />
 </RelativeLayout>

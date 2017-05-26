@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.chris.pss.R;
-import com.chris.pss.activity.TeacherResetTimeActivity;
 import com.chris.pss.app.SimpleUtils;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.utils.EmptyUtils;
@@ -74,14 +73,6 @@ public class RvMajorListAdapter extends BaseRvAdapter<DepartEntity> {
             }
             //监听
             setListener(itemView, position, data, mListener);
-            //长按修改时间
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    TeacherResetTimeActivity.JumpHere(mContext, data);
-                    return true;
-                }
-            });
         }
     }
 }
