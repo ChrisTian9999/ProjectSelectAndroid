@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#3F51B5</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--user added-->
+    <color name="colorPrimaryDark2">#303F9F</color>
+    <color name="colorPrimaryDark2Pre">#2A3090</color>
+    <color name="colorWhite">#ffffffff</color>
+    <color name="colorTextWhiteHint">#ffaaaaaa</color>
+    <color name="colorTextWhite">#ffffffff</color>
+    <color name="colorTextHintWhite">#ffaaaaaa</color>
+    <color name="colorDialogLoading">#80ffffff</color>
+    <color name="colorBlack">#FF000000</color>
+    <!--灰色的字体的颜色-->
+    <color name="colorTextColorGray">#FF888888</color>
+    <!--分割线的颜色-->
+    <color name="colorDividerGray">#FEEE</color>
+    <!--黑色的字体的颜色-->
+    <color name="colorText">#F222</color>
+    <!--水波纹的颜色-->
+    <color name="colorRipple">#FAAA</color>
+
+    <!--开始结束的时间的颜色-->
+    <color name="colorStart">#6A6</color>
+    <color name="colorEnd">#A66</color>
+    <color name="colorLightGray">#FAAA</color>
+</resources>

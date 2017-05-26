@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rl_root"
+    android:background="@drawable/bg_item_ripple"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_major_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="20sp"
+        tools:text="这是一个专业"/>
+
+
+    <TextView
+        android:id="@+id/tv_major_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_major_name"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/colorStart"
+        android:textSize="14sp"
+        tools:text="2017-01-01 12:12:12"/>
+
+    <TextView
+        android:id="@+id/tv_major_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_major_start"
+        android:textColor="@color/colorEnd"
+        android:textSize="14sp"
+        tools:text="2017-01-01 12:12:12"/>
+
+    <TextView
+        android:id="@+id/tv_major_state"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/tv_major_name"
+        android:background="@drawable/bg_state_green"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        tools:text="未开始"/>
+
+
+    <ImageView
+        android:id="@+id/iv_cha_kan"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_item_ripple"
+        android:padding="4dp"
+        android:clickable="true"
+        android:src="@drawable/bg_admin_cha_kan_selector"
+        />
+
+    <ImageView
+        android:id="@+id/iv_reset_time"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@id/iv_cha_kan"
+        android:padding="4dp"
+        android:clickable="true"
+        android:background="@drawable/bg_item_ripple"
+        android:src="@drawable/bg_reset_time_selector"
+        />
+</RelativeLayout>

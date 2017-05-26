@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">选题系统</string>
+
+    <string name="app_name_long">毕业设计选题系统</string>
+    <string name="splash_code_by">Code By ChrisTian</string>
+    <string name="login_hint_no">请输入账号</string>
+    <string name="login_hint_pwd">请输入密码</string>
+    <string name="login_by_tch">教师登录</string>
+    <string name="login_by_stu">学生登录</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu_teacher_my_project">所有课题</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gender_girl">女</string>
+    <string name="gender_boy">男</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="title_info_teacher_info">教师信息</string>
+    <string name="menu_teacher_admin">教务管理</string>
+    <string name="title_teacher_admin">教务管理</string>
+    <string name="menu_setting">设置</string>
+    <string name="teacher_not_admin">sorry! you are not admin!</string>
+    <string name="loading_text">正在加载中~</string>
+    <string name="btn_admin_modify">修改</string>
+    <string name="state_before">未开始</string>
+    <string name="state_start">进行中</string>
+    <string name="state_end">已结束</string>
+    <string name="admin_reset_time">修改时间</string>
+    <string name="admin_cha_kan">选题情况</string>
+    <string name="hint_start_time">Begin Time（yyyy-MM-dd HH:mm:ss）</string>
+    <string name="hint_end_time">End Time（yyyy-MM-dd HH:mm:ss）</string>
+    <string name="hint_time_format">yyyy-MM-dd HH:mm:ss</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="title_dialog_reset_time">设置时间</string>
+</resources>
