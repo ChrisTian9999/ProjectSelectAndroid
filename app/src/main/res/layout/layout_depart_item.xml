@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    tools:background="@drawable/bg_item_ripple"
+    android:background="@drawable/bg_item_ripple"
     >
 
     <TextView
@@ -53,4 +53,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="12sp"
         tools:text="未开始"/>
+
+
+
 </RelativeLayout>

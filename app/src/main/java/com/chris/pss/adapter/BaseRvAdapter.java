@@ -45,11 +45,11 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
         return mList == null ? 0 : mList.size();
     }
 
-    protected void setListener(View view, final int position, final T data, final OnItemClickListener<T> listener) {
+    protected void setListener(final View view, final int position, final T data, final OnItemClickListener<T> listener) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.OnItemClick(position, data);
+                listener.OnItemClick(view, position, data);
             }
         });
     }
@@ -71,6 +71,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
     }
 
     public interface OnItemClickListener<T> {
-        void OnItemClick(int position, T data);
+        void OnItemClick(View view, int position, T data);
     }
 }

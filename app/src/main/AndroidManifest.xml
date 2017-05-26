@@ -36,6 +36,8 @@
         <activity android:name=".activity.TeacherInfoActivity"/>
         <activity android:name=".activity.ResetPwdActivity">
         </activity>
+        <activity android:name=".activity.TeacherResetTimeActivity">
+        </activity>
     </application>
 
 </manifest>

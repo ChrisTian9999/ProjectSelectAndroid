@@ -72,7 +72,7 @@ public class TeacherAdminFragment extends Fragment {
 
         mAdapter = new RvMajorListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<DepartEntity>() {
             @Override
-            public void OnItemClick(int position, DepartEntity data) {
+            public void OnItemClick(View view, int position, DepartEntity data) {
                 ToastUtils.showToast("" + data.getName());
             }
         });

@@ -1,10 +1,12 @@
 package com.chris.pss.data.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by noonecode on 2017/5/13.
  */
 
-public class DepartEntity {
+public class DepartEntity implements Serializable{
     private int id;
     private int parentId;
     private String name;
