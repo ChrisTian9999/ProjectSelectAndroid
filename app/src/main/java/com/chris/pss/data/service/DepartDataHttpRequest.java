@@ -12,6 +12,7 @@ import android.content.Context;
 
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
+import com.chris.pss.data.entity.SimpleFlagEntity;
 
 import java.util.List;
 
@@ -41,6 +42,14 @@ public class DepartDataHttpRequest extends HttpRequest {
      */
     public void getDepartList(Subscriber<BaseResponse<List<DepartEntity>>> subscriber) {
         Observable<BaseResponse<List<DepartEntity>>> observable = mDepartDataService.getDepartList();
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 修改专业的时间
+     */
+    public void postModifyMajor(Subscriber<BaseResponse<SimpleFlagEntity>> subscriber, int id, String start, String end) {
+        Observable<BaseResponse<SimpleFlagEntity>> observable = mDepartDataService.postModifyMajor(id, start, end);
         toSubscribe(observable, subscriber);
     }
 

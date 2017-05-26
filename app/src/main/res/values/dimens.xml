@@ -9,4 +9,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="radius_state">9dp</dimen>
+
+    <dimen name="divider_height">2dp</dimen>
 </resources>

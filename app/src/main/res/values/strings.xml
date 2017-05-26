@@ -29,4 +29,10 @@
     <string name="state_end">已结束</string>
     <string name="admin_reset_time">修改时间</string>
     <string name="admin_cha_kan">选题情况</string>
+    <string name="hint_start_time">Begin Time（yyyy-MM-dd HH:mm:ss）</string>
+    <string name="hint_end_time">End Time（yyyy-MM-dd HH:mm:ss）</string>
+    <string name="hint_time_format">yyyy-MM-dd HH:mm:ss</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="title_dialog_reset_time">设置时间</string>
 </resources>

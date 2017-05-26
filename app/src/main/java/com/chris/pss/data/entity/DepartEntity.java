@@ -12,8 +12,6 @@ public class DepartEntity implements Serializable{
     private String name;
     private String timeBegin;
     private String timeEnd;
-    private long begin;
-    private long end;
 
     public DepartEntity() {
     }
@@ -64,22 +62,6 @@ public class DepartEntity implements Serializable{
 
     public void setTimeEnd(String timeEnd) {
         this.timeEnd = timeEnd;
-    }
-
-    public long getBegin() {
-        return begin;
-    }
-
-    public void setBegin(long begin) {
-        this.begin = begin;
-    }
-
-    public long getEnd() {
-        return end;
-    }
-
-    public void setEnd(long end) {
-        this.end = end;
     }
 
     @Override

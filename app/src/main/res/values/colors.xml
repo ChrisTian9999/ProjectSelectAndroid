@@ -16,7 +16,7 @@
     <!--灰色的字体的颜色-->
     <color name="colorTextColorGray">#FF888888</color>
     <!--分割线的颜色-->
-    <color name="colorDividerGray">#FF999999</color>
+    <color name="colorDividerGray">#FEEE</color>
     <!--黑色的字体的颜色-->
     <color name="colorText">#F222</color>
     <!--水波纹的颜色-->
