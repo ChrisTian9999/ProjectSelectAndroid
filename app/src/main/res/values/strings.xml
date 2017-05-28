@@ -37,4 +37,7 @@
     <string name="title_dialog_reset_time">设置时间</string>
     <string name="title_create_project">创建课题</string>
     <string name="title_reset_pwd">重置密码</string>
+    <string name="hint_pls_project_name">请输入课题标题</string>
+    <string name="hint_pls_project_detail">请输入详情内容</string>
+    <string name="create_project">创建课题</string>
 </resources>

@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.chris.pss.activity.TeacherCreateProjectActivity">
 
     <android.support.v7.widget.Toolbar
@@ -15,22 +15,75 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/shape_divider"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
-
-        <Spinner
-            android:id="@+id/sp_major"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:showDividers="middle">
 
 
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@null"
+                android:hint="@string/hint_pls_project_name"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:singleLine="true"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/et_detail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@null"
+                android:gravity="left|top"
+                android:hint="@string/hint_pls_project_detail"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"/>
 
 
+            <Spinner
+                android:id="@+id/sp_major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:spinnerMode="dropdown"/>
+
+            <RatingBar
+                android:id="@+id/rb_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:max="5"
+                android:stepSize="1"/>
+
+
+            <Button
+                android:id="@+id/btn_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_login_selector"
+                android:text="@string/create_project"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"/>
         </LinearLayout>
 
     </ScrollView>
