@@ -62,7 +62,7 @@ public class TeacherInfoActivity extends BaseActivity {
     }
 
     private void initViews() {
-        initToolBar(mToolbar, R.string.title_info_teacher_info);
+        initToolBar(mToolbar);
 
         if (IApp.tch.getTno().equals(mTno)) {//是当前用户
             initData(IApp.tch, IApp.depart);

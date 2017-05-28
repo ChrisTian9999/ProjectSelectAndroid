@@ -33,11 +33,14 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.TeacherActivity"/>
-        <activity android:name=".activity.TeacherInfoActivity"/>
-        <activity android:name=".activity.ResetPwdActivity">
-        </activity>
-        <activity android:name=".activity.TeacherResetTimeActivity">
-        </activity>
+        <activity android:name=".activity.TeacherInfoActivity"
+            android:label="@string/title_info_teacher"
+            />
+        <activity android:name=".activity.ResetPwdActivity"
+            android:label="@string/title_reset_pwd"/>
+        <activity android:name=".activity.TeacherCreateProjectActivity"
+            android:label="@string/title_create_project"
+            />
     </application>
 
 </manifest>

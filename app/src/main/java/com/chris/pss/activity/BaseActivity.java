@@ -32,10 +32,9 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected void initToolBar(Toolbar toolbar, int idRes) {
+    protected void initToolBar(Toolbar toolbar) {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.setTitle(idRes);
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

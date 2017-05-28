@@ -17,7 +17,7 @@
     <string name="gender_boy">男</string>
     <string name="yes">是</string>
     <string name="no">否</string>
-    <string name="title_info_teacher_info">教师信息</string>
+    <string name="title_info_teacher">教师信息</string>
     <string name="menu_teacher_admin">教务管理</string>
     <string name="title_teacher_admin">教务管理</string>
     <string name="menu_setting">设置</string>
@@ -35,4 +35,6 @@
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
     <string name="title_dialog_reset_time">设置时间</string>
+    <string name="title_create_project">创建课题</string>
+    <string name="title_reset_pwd">重置密码</string>
 </resources>
