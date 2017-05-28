@@ -1,7 +1,7 @@
 package com.chris.pss.data.entity;
 
 public class ProjectEntity {
-    private int id;
+    private Integer id;
     private int majorId;
     private int departmentId;
     private int teacherId;
