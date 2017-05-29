@@ -11,7 +11,6 @@ import android.widget.EditText;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.SimpleUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.StuLoginResult;
 import com.chris.pss.data.entity.TeacherLoginResult;
@@ -138,7 +137,6 @@ public class LoginActivity extends BaseActivity {
 
     private void loginSuc(StuLoginResult result) {
         IApp.stu = result.getStud();
-        IApp.extras = result.getExtras();
         //跳转到学生页面
 //        Intent intent = new Intent(this, TeacherActivity.class);
 //        startActivity(intent);

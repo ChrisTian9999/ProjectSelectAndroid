@@ -70,7 +70,6 @@ public class TeacherCreateProjectActivity extends BaseActivity {
         String detail = mEtDetail.getText().toString().trim();//详情
         DepartEntity majorEntity = (DepartEntity) mSpMajor.getSelectedItem();//所选的专业
         int starsNum = (int) mRbRank.getRating();//难度1-5
-        int departId = TeacherUtils.getMyDepartId();//学院
         //开始检测
         if (EmptyUtils.isEmpty(title)) {
             ToastUtils.showToast("标题不能为空");
@@ -84,10 +83,10 @@ public class TeacherCreateProjectActivity extends BaseActivity {
             ToastUtils.showToast("请选择目标专业");
             return;
         }
-//        postCreateProject(departId, majorEntity.getId(), IApp.tch.getId(), title, detail, starsNum);
+        postCreateProject( majorEntity.getId(), IApp.teacher.getId(), title, detail, starsNum);
     }
 
-    private void postCreateProject(int departmentId, int majorId, int teacherId, String title, String detail, int ranking) {
+    private void postCreateProject(int majorId, int teacherId, String title, String detail, int ranking) {
         ProjectDataHttpRequest.newInstance(IApp.context)
                 .createProject(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<SimpleFlagEntity>>() {
                     @Override
@@ -100,7 +99,6 @@ public class TeacherCreateProjectActivity extends BaseActivity {
                     public void onError(Throwable e) {
                         ToastUtils.showToast(e.getMessage());
                     }
-                }, TeacherCreateProjectActivity.this), departmentId, majorId, teacherId, title, detail, ranking);
-
+                }, TeacherCreateProjectActivity.this), majorId, teacherId, title, detail, ranking);
     }
 }

@@ -32,14 +32,6 @@ public class IApp extends Application {
      */
     public static List<DepartEntity> majors = null;
 
-    /**
-     * 学校的所有专业与学院信息
-     * 学院无parentId信息和开始结束信息
-     * 专业有所属学院的id（parentId）和开始选题结束选题信息
-     */
-    public static List<DepartEntity> extras = null;
-
-
     @Override
     public void onCreate() {
         super.onCreate();

@@ -9,10 +9,10 @@
 package com.chris.pss.data.service;
 
 import com.chris.pss.data.entity.BaseResponse;
-import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.entity.SimpleFlagEntity;
 
-import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -22,9 +22,14 @@ public interface ProjectDataService {
     /**
      * 创建项目
      */
+    @FormUrlEncoded
     @POST("project/create")
     Observable<BaseResponse<SimpleFlagEntity>> createProject(
-            @Body ProjectEntity entity
+            @Field("majorId") Integer majorId,
+            @Field("teacherId") Integer teacherId,
+            @Field("title") String title,
+            @Field("detail") String detail,
+            @Field("ranking") Integer ranking
     );
 
 }
