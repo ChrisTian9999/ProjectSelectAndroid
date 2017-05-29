@@ -45,7 +45,7 @@ public interface DepartDataService {
      * @return
      */
     @FormUrlEncoded
-    @POST("department/major/{id}/modify")
+    @POST("depart/major/{id}/modify")
     Observable<BaseResponse<SimpleFlagEntity>> postModifyMajor(
             @Path("id") int id,
             @Field("start") String start,
