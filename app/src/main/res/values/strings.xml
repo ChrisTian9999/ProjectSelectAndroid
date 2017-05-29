@@ -43,4 +43,5 @@
     <string name="label_project_student">选题学生：</string>
     <string name="hint_project_detail">无内容</string>
     <string name="menu_settings">设置</string>
+    <string name="label_project_teacher">出题人：</string>
 </resources>

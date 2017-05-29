@@ -73,7 +73,7 @@
 
 
     <LinearLayout
-        android:id="@+id/ll_project_student"
+        android:id="@+id/ll_project_teacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_project_checking"
@@ -83,16 +83,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_project_student"
+            android:text="@string/label_project_teacher"
             android:textColor="@color/colorTextColorGray"
             android:textSize="14sp"/>
 
         <TextView
-            android:id="@+id/tv_project_stu"
+            android:id="@+id/tv_project_teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
             android:textSize="14sp"
             tools:text="明明/201301"/>
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_project_check"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_item_ripple"
+        android:padding="8dp"
+        android:src="@drawable/ic_project_check"/>
 </RelativeLayout>

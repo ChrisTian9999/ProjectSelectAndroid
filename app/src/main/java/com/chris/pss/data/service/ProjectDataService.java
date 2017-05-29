@@ -19,6 +19,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 public interface ProjectDataService {
@@ -44,4 +45,14 @@ public interface ProjectDataService {
     Observable<BaseResponse<List<ProjectEntity>>> getProjectListByTno(
             @Path("tno") String tno
     );
+
+    /**
+     * 某个学院departId，审核状态为isChecked课题列表
+     */
+    @GET("project/depart/{departId}/list")
+    Observable<BaseResponse<List<ProjectEntity>>> getDepartProjectListByCheckState(
+            @Path("departId") int departId,
+            @Query("isChecked") boolean isChecked
+    );
+
 }

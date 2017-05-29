@@ -53,4 +53,12 @@ public class ProjectDataHttpRequest extends HttpRequest {
         Observable<BaseResponse<List<ProjectEntity>>> observable = mProjectDataService.getProjectListByTno(tno);
         toSubscribe(observable, subscriber);
     }
+
+    /**
+     * 某个学院departId，审核状态为isChecked课题列表
+     */
+    public void getDepartProjectListByCheckState(Subscriber<BaseResponse<List<ProjectEntity>>> subscriber, int departId, boolean isChecked) {
+        Observable<BaseResponse<List<ProjectEntity>>> observable = mProjectDataService.getDepartProjectListByCheckState(departId, isChecked);
+        toSubscribe(observable, subscriber);
+    }
 }

@@ -2,14 +2,14 @@ package com.chris.pss.adapter;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.ProjectEntity;
-import com.chris.pss.data.entity.StuEntity;
+import com.chris.pss.data.entity.TeacherEntity;
 
 import java.util.List;
 
@@ -21,15 +21,15 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar;
  * Created by zht on 2017/5/30.
  */
 
-public class RvTeacherProjectListAdapter extends BaseRvAdapter<ProjectEntity> {
+public class RvTeacherAdminProjectCheckListAdapter extends BaseRvAdapter<ProjectEntity> {
 
-    public RvTeacherProjectListAdapter(Context context, List<ProjectEntity> list, OnItemClickListener<ProjectEntity> listener) {
+    public RvTeacherAdminProjectCheckListAdapter(Context context, List<ProjectEntity> list, OnItemClickListener<ProjectEntity> listener) {
         super(context, list, listener);
     }
 
     @Override
     protected int getItemLayoutId(int viewType) {
-        return R.layout.layout_teacher_project_item;
+        return R.layout.layout_teacher_admin_project_check_item;
     }
 
     @Override
@@ -48,12 +48,10 @@ public class RvTeacherProjectListAdapter extends BaseRvAdapter<ProjectEntity> {
         MaterialRatingBar mMrbProjectStar;
         @BindView(R.id.tv_project_detail)
         TextView mTvProjectDetail;
-        @BindView(R.id.tv_project_checking)
-        TextView mTvProjectChecking;
-        @BindView(R.id.tv_project_stu)
-        TextView mTvProjectStu;
-        @BindView(R.id.ll_project_student)
-        LinearLayout mLlProjectStudent;
+        @BindView(R.id.tv_project_teacher)
+        TextView mTvProjectTch;
+        @BindView(R.id.iv_project_check)
+        ImageView mIvProjectCheck;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -71,18 +69,12 @@ public class RvTeacherProjectListAdapter extends BaseRvAdapter<ProjectEntity> {
             mMrbProjectStar.setProgress(data.getRanking());
             //详情
             mTvProjectDetail.setText(data.getDetail());
-            //checking / student / null
-            if (1 == data.getIsChecked()) {//审核已通过
-                mTvProjectChecking.setVisibility(View.GONE);
-                mLlProjectStudent.setVisibility(View.VISIBLE);
-                //学生
-                StuEntity stu = data.getStudent();
-                mTvProjectStu.setText(stu == null ? "无" : stu.getName() + "/" + stu.getSno());
-                setListener(mLlProjectStudent, position, data, mListener);
-            } else {//审核暂未通过
-                mTvProjectChecking.setVisibility(View.VISIBLE);
-                mLlProjectStudent.setVisibility(View.GONE);
+            //checking (默认全部是审核未通过的)
+            if (1 != data.getIsChecked()) {//审核暂未通过
+                TeacherEntity teacher = data.getTeacher();
+                mTvProjectTch.setText(teacher.getName() + "/" + teacher.getZhicheng());
             }
+            setListener(mIvProjectCheck, position, data, mListener);
             setListener(mLlProjectRoot, position, data, mListener);
         }
     }

@@ -1,10 +1,8 @@
 package com.chris.pss.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chris.pss.R;
-import com.chris.pss.activity.TeacherCreateProjectActivity;
 import com.chris.pss.adapter.BaseRvAdapter;
-import com.chris.pss.adapter.RvTeacherProjectListAdapter;
+import com.chris.pss.adapter.RvTeacherAdminProjectCheckListAdapter;
 import com.chris.pss.app.IApp;
+import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.service.ProjectDataHttpRequest;
@@ -26,38 +24,32 @@ import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecorati
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeacherProjectListFragment extends Fragment {
+public class TeacherAdminProjectCheckListFragment extends Fragment {
 
 
     @BindView(R.id.recycler)
     RecyclerView mRecycler;
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout mSrlRefresh;
-    @BindView(R.id.fab_add)
-    FloatingActionButton mFabAdd;
     Unbinder unbinder;
-    private RvTeacherProjectListAdapter mAdapter;
+    private RvTeacherAdminProjectCheckListAdapter mAdapter;
 
-    public TeacherProjectListFragment() {
+    public TeacherAdminProjectCheckListFragment() {
         // Required empty public constructor
     }
 
-    public static TeacherProjectListFragment newInstance() {
+    public static TeacherAdminProjectCheckListFragment newInstance() {
         Bundle args = new Bundle();
-        TeacherProjectListFragment fragment = new TeacherProjectListFragment();
+        TeacherAdminProjectCheckListFragment fragment = new TeacherAdminProjectCheckListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,9 +58,8 @@ public class TeacherProjectListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_teacher_project_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_teacher_admin_project_check_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
         initViews();
         return view;
     }
@@ -86,7 +77,7 @@ public class TeacherProjectListFragment extends Fragment {
         mSrlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                fetchTeacherProjects();
+                getDepartProjectListByCheckState();
             }
         });
         //
@@ -94,14 +85,16 @@ public class TeacherProjectListFragment extends Fragment {
     }
 
     @NonNull
-    private RvTeacherProjectListAdapter getAdapter() {
-        return new RvTeacherProjectListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
+    private RvTeacherAdminProjectCheckListAdapter getAdapter() {
+        return new RvTeacherAdminProjectCheckListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
             @Override
             public void OnItemClick(View view, int position, ProjectEntity data) {
                 switch (view.getId()) {
                     case R.id.rl_project_root:
                         break;
-                    case R.id.ll_project_student:
+                    case R.id.ll_project_teacher:
+                        break;
+                    case R.id.iv_project_check:
                         break;
                     default:
                         break;
@@ -110,19 +103,9 @@ public class TeacherProjectListFragment extends Fragment {
         });
     }
 
-
-    @OnClick({R.id.fab_add})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.fab_add://创建课题
-                startActivity(new Intent(getContext(), TeacherCreateProjectActivity.class));
-                break;
-        }
-    }
-
-    public void fetchTeacherProjects() {
+    public void getDepartProjectListByCheckState() {
         ProjectDataHttpRequest.newInstance(IApp.context)
-                .getProjectListByTno(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<ProjectEntity>>>() {
+                .getDepartProjectListByCheckState(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<ProjectEntity>>>() {
                     @Override
                     public void onNext(BaseResponse<List<ProjectEntity>> response) {
                         mAdapter.setList(response.getData());
@@ -134,21 +117,16 @@ public class TeacherProjectListFragment extends Fragment {
                         ToastUtils.showToast(e.getMessage());
                         finishRefresh();
                     }
-                }, getContext()), IApp.teacher.getTno());
+                }, getContext()), TeacherUtils.getMyDepartId(), false);
     }
 
-
-    @Subscribe
-    public void onEvent(ProjectCreateSuccessEvent event) {
-        refresh();
-    }
 
     private void refresh() {
         mSrlRefresh.post(new Runnable() {
             @Override
             public void run() {
                 mSrlRefresh.setRefreshing(true);
-                fetchTeacherProjects();
+                getDepartProjectListByCheckState();
             }
         });
     }
@@ -165,13 +143,7 @@ public class TeacherProjectListFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        EventBus.getDefault().unregister(this);
         unbinder.unbind();
     }
 
-    /**
-     * 创建项目成功的事件
-     */
-    public static class ProjectCreateSuccessEvent {
-    }
 }

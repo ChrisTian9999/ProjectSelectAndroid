@@ -51,6 +51,9 @@ public class TeacherActivity extends BaseActivity
         mHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //关闭drawLayout
+                onBackPressed();
+                //
                 String tno = IApp.teacher.getTno();
                 startActivity(TeacherInfoActivity.getJumpIntent(TeacherActivity.this, tno));
             }
