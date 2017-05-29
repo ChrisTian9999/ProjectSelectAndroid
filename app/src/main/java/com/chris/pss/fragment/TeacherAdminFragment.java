@@ -18,7 +18,7 @@ import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvMajorListAdapter;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.SimpleUtils;
+import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.SimpleFlagEntity;
@@ -92,17 +92,14 @@ public class TeacherAdminFragment extends Fragment {
 
     public void fetchDeparts() {
         DepartDataHttpRequest.newInstance(IApp.context)
-                .getDepartList(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<DepartEntity>>>() {
+                .getMajorList(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<DepartEntity>>>() {
                     @Override
                     public void onNext(BaseResponse<List<DepartEntity>> response) {
-                        List<DepartEntity> departList = response.getData();
-                        if (departList != null) {
-                            //更新全局数据
-                            IApp.extras = departList;
-                            //
-                            List<DepartEntity> majorList = SimpleUtils.getChiledDepartList(IApp.tch.getDepartmentId());
-                            mAdapter.setList(majorList);
-                        }
+                        List<DepartEntity> majorList = response.getData();
+                        //更新全局数据
+                        IApp.majors = majorList;
+
+                        mAdapter.setList(majorList);
                         finishRefresh();
                     }
 
@@ -111,7 +108,7 @@ public class TeacherAdminFragment extends Fragment {
                         ToastUtils.showToast(e.getMessage());
                         finishRefresh();
                     }
-                }, getContext()));
+                }, getContext()), TeacherUtils.getMyDepartId());
     }
 
     @NonNull
@@ -148,7 +145,7 @@ public class TeacherAdminFragment extends Fragment {
                     @Override
                     public void onClick(@NonNull MaterialDialog materialDialog, @NonNull DialogAction dialogAction) {
                         String start = EtStart.getText().toString().trim();
-                        String end  = EtEnd.getText().toString().trim();
+                        String end = EtEnd.getText().toString().trim();
                         postModifyMajor(entity.getId(), start, end);
                     }
                 })

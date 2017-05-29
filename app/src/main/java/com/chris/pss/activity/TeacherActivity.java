@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
+import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.fragment.BlankFragment;
 import com.chris.pss.fragment.TeacherAdminFragment;
 import com.chris.pss.fragment.TeacherNotAdminFragment;
@@ -50,12 +51,12 @@ public class TeacherActivity extends BaseActivity
         mHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tno = IApp.tch.getTno();
+                String tno = IApp.teacher.getTno();
                 startActivity(TeacherInfoActivity.getJumpIntent(TeacherActivity.this, tno));
             }
         });
         TextView mHeaderName = (TextView) mHeaderView.findViewById(R.id.tv_header_name);
-        mHeaderName.setText(IApp.tch.getName());
+        mHeaderName.setText(IApp.teacher.getName());
 
         //默认打开菜单
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -83,7 +84,7 @@ public class TeacherActivity extends BaseActivity
                 ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance());
                 break;
             case R.id.nav_admin:
-                if (IApp.tch.getIsAdmin() == 1) {
+                if (TeacherUtils.checkIsAdmin()) {
                     ft.replace(R.id.fl_container, TeacherAdminFragment.newInstance());
                 } else {
                     ft.replace(R.id.fl_container, TeacherNotAdminFragment.newInstance());

@@ -15,23 +15,21 @@ public class TeacherUtils {
      * 获得教师的所在学院id
      */
     public static int getMyDepartId() {
-        return IApp.tch == null ? -1 : IApp.tch.getDepartmentId();
+        return IApp.teacher.getDepart().getId();
     }
 
     /**
      * 获得所在学院的所有专业列表
      */
     public static List<DepartEntity> getMajorList() {
-        ArrayList<DepartEntity> list = new ArrayList<>();
-        int departId = getMyDepartId();
-        if (departId > 0 && IApp.extras != null) {
-            for (DepartEntity entity : IApp.extras) {
-                if (entity.getParentId() == departId) {
-                    list.add(entity);
-                }
-            }
-        }
-        return list;
+        return IApp.majors == null ? new ArrayList<DepartEntity>() : IApp.majors;
+    }
+
+    /**
+     * 当前是否是教务员
+     */
+    public static boolean checkIsAdmin() {
+        return IApp.teacher.getIsAdmin() == 1;
     }
 
 }

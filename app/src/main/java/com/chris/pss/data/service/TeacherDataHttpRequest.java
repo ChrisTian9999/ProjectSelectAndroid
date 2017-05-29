@@ -11,7 +11,7 @@ package com.chris.pss.data.service;
 import android.content.Context;
 
 import com.chris.pss.data.entity.BaseResponse;
-import com.chris.pss.data.entity.TchLoginResult;
+import com.chris.pss.data.entity.TeacherLoginResult;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -36,8 +36,8 @@ public class TeacherDataHttpRequest extends HttpRequest {
     /**
      * 登录
      */
-    public void postLogin(Subscriber<BaseResponse<TchLoginResult>> subscriber, String tno, String pwd) {
-        Observable<BaseResponse<TchLoginResult>> observable = mTeacherDataService.postLogin(tno, pwd);
+    public void postLogin(Subscriber<BaseResponse<TeacherLoginResult>> subscriber, String tno, String pwd) {
+        Observable<BaseResponse<TeacherLoginResult>> observable = mTeacherDataService.postLogin(tno, pwd);
         toSubscribe(observable, subscriber);
     }
 
@@ -45,8 +45,8 @@ public class TeacherDataHttpRequest extends HttpRequest {
      * 获得教师的信息，包括学院
      * @param tno 教师号
      */
-    public void getTchInfo(Subscriber<BaseResponse<TchLoginResult>> subscriber, String tno) {
-        Observable<BaseResponse<TchLoginResult>> observable = mTeacherDataService.getTchInfo(tno);
+    public void getTchInfo(Subscriber<BaseResponse<TeacherLoginResult>> subscriber, String tno) {
+        Observable<BaseResponse<TeacherLoginResult>> observable = mTeacherDataService.getTchInfo(tno);
         toSubscribe(observable, subscriber);
     }
 

@@ -9,7 +9,7 @@
 package com.chris.pss.data.service;
 
 import com.chris.pss.data.entity.BaseResponse;
-import com.chris.pss.data.entity.TchLoginResult;
+import com.chris.pss.data.entity.TeacherLoginResult;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -25,7 +25,7 @@ public interface TeacherDataService {
      */
     @FormUrlEncoded
     @POST("teacher/login")
-    Observable<BaseResponse<TchLoginResult>> postLogin(
+    Observable<BaseResponse<TeacherLoginResult>> postLogin(
             @Field("tno") String tno,
             @Field("pwd") String pwd
     );
@@ -34,6 +34,6 @@ public interface TeacherDataService {
      * 获得教师的基本信息，包括学院
      */
     @GET("teacher/info/tno/{tno}")
-    Observable<BaseResponse<TchLoginResult>> getTchInfo(@Path("tno") String tno);
+    Observable<BaseResponse<TeacherLoginResult>> getTchInfo(@Path("tno") String tno);
 
 }

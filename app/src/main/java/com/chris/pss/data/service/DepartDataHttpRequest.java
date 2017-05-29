@@ -40,8 +40,17 @@ public class DepartDataHttpRequest extends HttpRequest {
     /**
      * 获得所有的专业/学院信息
      */
+    @Deprecated
     public void getDepartList(Subscriber<BaseResponse<List<DepartEntity>>> subscriber) {
         Observable<BaseResponse<List<DepartEntity>>> observable = mDepartDataService.getDepartList();
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 根据学院id，获得所属所有专业的信息
+     */
+    public void getMajorList(Subscriber<BaseResponse<List<DepartEntity>>> subscriber, int departId) {
+        Observable<BaseResponse<List<DepartEntity>>> observable = mDepartDataService.getMajorList(departId);
         toSubscribe(observable, subscriber);
     }
 

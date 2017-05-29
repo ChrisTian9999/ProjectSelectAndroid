@@ -10,8 +10,8 @@ import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
-import com.chris.pss.data.entity.TchEntity;
-import com.chris.pss.data.entity.TchLoginResult;
+import com.chris.pss.data.entity.TeacherEntity;
+import com.chris.pss.data.entity.TeacherLoginResult;
 import com.chris.pss.data.service.TeacherDataHttpRequest;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
@@ -64,31 +64,31 @@ public class TeacherInfoActivity extends BaseActivity {
     private void initViews() {
         initToolBar(mToolbar);
 
-        if (IApp.tch.getTno().equals(mTno)) {//是当前用户
-            initData(IApp.tch, IApp.depart);
-        }else { //不是当前用户
+        if (IApp.teacher.getTno().equals(mTno)) {//是当前用户
+            initData(IApp.teacher);
+        } else { //不是当前用户
             fetchTchInfo(mTno);
         }
     }
 
     private void fetchTchInfo(String tno) {
         TeacherDataHttpRequest.newInstance(IApp.context)
-                .getTchInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TchLoginResult>>() {
+                .getTchInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TeacherLoginResult>>() {
                     @Override
-                    public void onNext(BaseResponse<TchLoginResult> response) {
-                        TchLoginResult data = response.getData();
-                        initData(data.getTch(), data.getDepart());
+                    public void onNext(BaseResponse<TeacherLoginResult> response) {
+                        TeacherLoginResult data = response.getData();
+                        initData(data.getTeacher());
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         ToastUtils.showToast(e.getMessage());
                     }
-                },this ), tno);
+                }, this), tno);
     }
 
 
-    private void initData(TchEntity tch, DepartEntity depart) {
+    private void initData(TeacherEntity tch) {
         if (tch == null) {
             ToastUtils.showToast("无数据");
             return;
@@ -101,12 +101,9 @@ public class TeacherInfoActivity extends BaseActivity {
         mTvInfoTel.setText(tch.getTel());
         mTvInfoEmail.setText(tch.getEmail());
         mTvInfoIsAdmin.setText(tch.getIsAdmin() == 1 ? R.string.yes : R.string.no);
-
-        if (depart == null) {
-            ToastUtils.showToast("无学院信息");
-            return;
-        }
-        mTvInfoDepart.setText(depart.getName());
+        //所在学院的信息
+        DepartEntity depart = tch.getDepart();
+        mTvInfoDepart.setText(depart == null ? "无学院信息" : depart.getName());
     }
 
 

@@ -84,7 +84,7 @@ public class TeacherCreateProjectActivity extends BaseActivity {
             ToastUtils.showToast("请选择目标专业");
             return;
         }
-        postCreateProject(departId, majorEntity.getId(), IApp.tch.getId(), title, detail, starsNum);
+//        postCreateProject(departId, majorEntity.getId(), IApp.tch.getId(), title, detail, starsNum);
     }
 
     private void postCreateProject(int departmentId, int majorId, int teacherId, String title, String detail, int ranking) {

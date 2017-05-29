@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.StuEntity;
-import com.chris.pss.data.entity.TchEntity;
+import com.chris.pss.data.entity.TeacherEntity;
 
 import java.util.List;
 
@@ -22,16 +22,16 @@ public class IApp extends Application {
      * 学生信息
      */
     public static StuEntity stu = null;
-    /**
-     * 教师信息
-     */
-    public static TchEntity tch = null;
 
     /**
-     * 当前用户是学生时，此对象是专业信息
-     * 当前用户是教师时，此对象是学院信息
+     * 当前登陆教师信息
      */
-    public static DepartEntity depart = null;
+    public static TeacherEntity teacher = null;
+    /**
+     * 教师登陆时，本学院内所有的专业信息
+     */
+    public static List<DepartEntity> majors = null;
+
     /**
      * 学校的所有专业与学院信息
      * 学院无parentId信息和开始结束信息

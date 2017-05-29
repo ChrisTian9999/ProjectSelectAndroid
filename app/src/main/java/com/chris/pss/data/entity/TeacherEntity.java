@@ -1,13 +1,14 @@
 package com.chris.pss.data.entity;
 
 /**
- * Created by noonecode on 2017/5/15.
+ * Created by zht on 2017/5/15.
  */
 
-public class TchEntity {
+public class TeacherEntity {
+
     /**
      * id : 1
-     * departmentId : 1
+     * depart : {"id":1,"parent":null,"name":"电子与信息工程学院","timeBegin":null,"timeEnd":null}
      * tno : t001
      * name : 赵老师
      * pwd : null
@@ -19,10 +20,10 @@ public class TchEntity {
      */
 
     private int id;
-    private int departmentId;
+    private DepartEntity depart;
     private String tno;
     private String name;
-    private String pwd;
+    private Object pwd;
     private int gender;
     private String zhicheng;
     private String tel;
@@ -37,12 +38,12 @@ public class TchEntity {
         this.id = id;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public DepartEntity getDepart() {
+        return depart;
     }
 
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
+    public void setDepart(DepartEntity depart) {
+        this.depart = depart;
     }
 
     public String getTno() {
@@ -65,7 +66,7 @@ public class TchEntity {
         return pwd;
     }
 
-    public void setPwd(String pwd) {
+    public void setPwd(Object pwd) {
         this.pwd = pwd;
     }
 
@@ -111,9 +112,9 @@ public class TchEntity {
 
     @Override
     public String toString() {
-        return "TchEntity{" +
+        return "TeacherEntity{" +
                 "id=" + id +
-                ", departmentId=" + departmentId +
+                ", depart=" + depart +
                 ", tno='" + tno + '\'' +
                 ", name='" + name + '\'' +
                 ", pwd=" + pwd +

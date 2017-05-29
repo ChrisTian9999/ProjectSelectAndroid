@@ -14,7 +14,7 @@ import com.chris.pss.app.IApp;
 import com.chris.pss.app.SimpleUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.StuLoginResult;
-import com.chris.pss.data.entity.TchLoginResult;
+import com.chris.pss.data.entity.TeacherLoginResult;
 import com.chris.pss.data.service.StudentDataHttpRequest;
 import com.chris.pss.data.service.TeacherDataHttpRequest;
 import com.chris.pss.utils.LogUtils;
@@ -85,11 +85,13 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         TeacherDataHttpRequest.newInstance(IApp.context)
-                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TchLoginResult>>() {
+                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TeacherLoginResult>>() {
                     @Override
-                    public void onNext(BaseResponse<TchLoginResult> response) {
+                    public void onNext(BaseResponse<TeacherLoginResult> response) {
                         LogUtils.e(response);
-                        ToastUtils.showToast(SimpleUtils.getWelcomeString(response.getData().getTch()));
+                        //
+                        String teacherName = response.getData().getTeacher().getName();
+                        ToastUtils.showToast("欢迎您，" + teacherName);
                         loginSuc(response.getData());
                     }
 
@@ -103,10 +105,9 @@ public class LoginActivity extends BaseActivity {
     /**
      * 教师登录成功
      */
-    private void loginSuc(TchLoginResult result) {
-        IApp.tch = result.getTch();
-        IApp.depart = result.getDepart();
-        IApp.extras = result.getExtras();
+    private void loginSuc(TeacherLoginResult result) {
+        IApp.teacher = result.getTeacher();//当前教师的信息
+        IApp.majors = result.getMajors();//所在学院的所有专业
         //跳转到教师页面
         Intent intent = new Intent(this, TeacherActivity.class);
         startActivity(intent);
@@ -124,7 +125,7 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onNext(BaseResponse<StuLoginResult> response) {
                         LogUtils.e(response);
-                        ToastUtils.showToast(SimpleUtils.getWelcomeString(response.getData().getStud()));
+//                        ToastUtils.showToast(SimpleUtils.getWelcomeString(response.getData().getStud()));
                         loginSuc(response.getData());
                     }
 
@@ -137,7 +138,6 @@ public class LoginActivity extends BaseActivity {
 
     private void loginSuc(StuLoginResult result) {
         IApp.stu = result.getStud();
-        IApp.depart = result.getMajor();
         IApp.extras = result.getExtras();
         //跳转到学生页面
 //        Intent intent = new Intent(this, TeacherActivity.class);

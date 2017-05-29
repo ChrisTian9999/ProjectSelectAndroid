@@ -27,8 +27,17 @@ public interface DepartDataService {
     /**
      * 获得所有的专业/学院信息
      */
-    @GET("department/list")
+    @Deprecated
+    @GET("depart/list")
     Observable<BaseResponse<List<DepartEntity>>> getDepartList();
+
+    /**
+     * 根据学院id，获得所属所有专业的信息
+     */
+    @GET("depart/{departId}/list")
+    Observable<BaseResponse<List<DepartEntity>>> getMajorList(
+            @Path("departId") int departId
+    );
 
     /**
      * @param start yyyy-MM-dd HH:mm:ss

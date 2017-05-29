@@ -3,25 +3,17 @@ package com.chris.pss.data.entity;
 import java.io.Serializable;
 
 /**
- * Created by noonecode on 2017/5/13.
+ * Created by zht on 2017/5/13.
  */
 
 public class DepartEntity implements Serializable{
     private int id;
-    private int parentId;
+    private DepartEntity parent;
     private String name;
     private String timeBegin;
     private String timeEnd;
 
     public DepartEntity() {
-    }
-
-    public DepartEntity(int id, int parentId, String name, String timeBegin, String timeEnd) {
-        this.id = id;
-        this.parentId = parentId;
-        this.name = name;
-        this.timeBegin = timeBegin;
-        this.timeEnd = timeEnd;
     }
 
     public int getId() {
@@ -32,12 +24,12 @@ public class DepartEntity implements Serializable{
         this.id = id;
     }
 
-    public int getParentId() {
-        return parentId;
+    public DepartEntity getParent() {
+        return parent;
     }
 
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
+    public void setParent(DepartEntity parent) {
+        this.parent = parent;
     }
 
     public String getName() {
@@ -68,7 +60,7 @@ public class DepartEntity implements Serializable{
     public String toString() {
         return "DepartEntity{" +
                 "id=" + id +
-                ", parentId=" + parentId +
+                ", parent=" + parent +
                 ", name='" + name + '\'' +
                 ", timeBegin='" + timeBegin + '\'' +
                 ", timeEnd='" + timeEnd + '\'' +
