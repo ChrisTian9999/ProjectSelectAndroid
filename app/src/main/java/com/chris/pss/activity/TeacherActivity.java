@@ -62,6 +62,8 @@ public class TeacherActivity extends BaseActivity
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance());
         ft.commit();
+        //
+        setTitle(R.string.menu_teacher_my_project);
     }
 
     @Override
@@ -90,12 +92,16 @@ public class TeacherActivity extends BaseActivity
                     ft.replace(R.id.fl_container, TeacherNotAdminFragment.newInstance());
                 }
                 break;
+            case R.id.nav_settings:
+//                break;
             default:
                 ft.replace(R.id.fl_container, BlankFragment.newInstance());
                 break;
         }
         ft.commit();
         mDrawerLayout.closeDrawer(GravityCompat.START);
+        //设置标题
+        setTitle(item.getTitle());
         return true;
     }
 }

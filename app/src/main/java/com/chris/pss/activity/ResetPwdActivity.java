@@ -3,11 +3,10 @@ package com.chris.pss.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.chris.pss.R;
 
-public class ResetPwdActivity extends AppCompatActivity {
+public class ResetPwdActivity extends BaseActivity {
 
     private static final int TYPE_STU = 0;
     private static final int TYPE_TCH = 1;

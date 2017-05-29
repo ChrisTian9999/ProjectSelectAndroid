@@ -45,8 +45,6 @@ public class RvTeacherAdminMajorListAdapter extends BaseRvAdapter<DepartEntity> 
         TextView mTvState;
         @BindView(R.id.iv_reset_time)
         ImageView mIvResetTime;
-        @BindView(R.id.iv_cha_kan)
-        ImageView mIvChaKan;
 
         ViewHolder(View view) {
             super(view);
@@ -80,7 +78,6 @@ public class RvTeacherAdminMajorListAdapter extends BaseRvAdapter<DepartEntity> 
             //监听
             setListener(itemView, position, data, mListener);
             setListener(mIvResetTime, position, data, mListener);
-            setListener(mIvChaKan, position, data, mListener);
         }
     }
 }
