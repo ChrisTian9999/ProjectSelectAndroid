@@ -4,14 +4,12 @@ public class ProjectEntity {
     private Integer id;
     private DepartEntity major;//专业
     private TeacherEntity teacher;
+    private StuEntity student;
     private String title;
     private String detail;
     private Integer ranking;
     private Integer isChecked;
     private Integer isFinish;
-    //2 upload
-    private Integer majorId;
-    private Integer teacherId;
 
 
     public ProjectEntity() {
@@ -81,20 +79,12 @@ public class ProjectEntity {
         this.isFinish = isFinish;
     }
 
-    public Integer getMajorId() {
-        return majorId;
+    public StuEntity getStudent() {
+        return student;
     }
 
-    public void setMajorId(Integer majorId) {
-        this.majorId = majorId;
-    }
-
-    public Integer getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
+    public void setStudent(StuEntity student) {
+        this.student = student;
     }
 
     @Override
@@ -103,13 +93,12 @@ public class ProjectEntity {
                 "id=" + id +
                 ", major=" + major +
                 ", teacher=" + teacher +
+                ", student=" + student +
                 ", title='" + title + '\'' +
                 ", detail='" + detail + '\'' +
                 ", ranking=" + ranking +
                 ", isChecked=" + isChecked +
                 ", isFinish=" + isFinish +
-                ", majorId=" + majorId +
-                ", teacherId=" + teacherId +
                 '}';
     }
 }

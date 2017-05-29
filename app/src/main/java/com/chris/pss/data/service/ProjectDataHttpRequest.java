@@ -11,7 +11,10 @@ package com.chris.pss.data.service;
 import android.content.Context;
 
 import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.entity.SimpleFlagEntity;
+
+import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -42,4 +45,12 @@ public class ProjectDataHttpRequest extends HttpRequest {
         toSubscribe(observable, subscriber);
     }
 
+    /**
+     * 获得教师的所有课题
+     * @param tno 教师号
+     */
+    public void getProjectListByTno(Subscriber<BaseResponse<List<ProjectEntity>>> subscriber, String tno) {
+        Observable<BaseResponse<List<ProjectEntity>>> observable = mProjectDataService.getProjectListByTno(tno);
+        toSubscribe(observable, subscriber);
+    }
 }

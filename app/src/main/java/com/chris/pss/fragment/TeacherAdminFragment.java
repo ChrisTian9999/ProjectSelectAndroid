@@ -16,7 +16,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
-import com.chris.pss.adapter.RvMajorListAdapter;
+import com.chris.pss.adapter.RvTeacherAdminMajorListAdapter;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
@@ -45,7 +45,7 @@ public class TeacherAdminFragment extends Fragment {
     RecyclerView mRecycler;
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout mSrlRefresh;
-    private RvMajorListAdapter mAdapter;
+    private RvTeacherAdminMajorListAdapter mAdapter;
 
     public TeacherAdminFragment() {
     }
@@ -112,8 +112,8 @@ public class TeacherAdminFragment extends Fragment {
     }
 
     @NonNull
-    private RvMajorListAdapter getRvMajorListAdapter() {
-        return new RvMajorListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<DepartEntity>() {
+    private RvTeacherAdminMajorListAdapter getRvMajorListAdapter() {
+        return new RvTeacherAdminMajorListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<DepartEntity>() {
             @Override
             public void OnItemClick(View view, int position, DepartEntity data) {
                 switch (view.getId()) {

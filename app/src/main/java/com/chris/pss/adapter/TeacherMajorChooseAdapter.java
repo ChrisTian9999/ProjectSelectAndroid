@@ -19,12 +19,12 @@ import butterknife.ButterKnife;
  * Created by zht on 2017/5/28.
  */
 
-public class MajorChooseAdapter extends BaseAdapter {
+public class TeacherMajorChooseAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<DepartEntity> list;
 
-    public MajorChooseAdapter(Context context, List<DepartEntity> list) {
+    public TeacherMajorChooseAdapter(Context context, List<DepartEntity> list) {
         mContext = context;
         this.list = list;
     }

@@ -23,7 +23,8 @@
     <color name="colorRipple">#FAAA</color>
 
     <!--开始结束的时间的颜色-->
-    <color name="colorStart">#6A6</color>
-    <color name="colorEnd">#A66</color>
+    <color name="colorStart">#6F6</color>
+    <color name="colorEnd">#F66</color>
     <color name="colorLightGray">#FAAA</color>
+    <color name="colorChecking">#F22</color>
 </resources>

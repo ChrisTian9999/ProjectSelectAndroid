@@ -9,11 +9,16 @@
 package com.chris.pss.data.service;
 
 import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.entity.SimpleFlagEntity;
+
+import java.util.List;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import rx.Observable;
 
 public interface ProjectDataService {
@@ -32,4 +37,11 @@ public interface ProjectDataService {
             @Field("ranking") Integer ranking
     );
 
+    /**
+     * 获得教师的所有的项目
+     */
+    @GET("project/teacher/{tno}/list")
+    Observable<BaseResponse<List<ProjectEntity>>> getProjectListByTno(
+            @Path("tno") String tno
+    );
 }

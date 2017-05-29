@@ -9,17 +9,20 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 
 import com.chris.pss.R;
-import com.chris.pss.adapter.MajorChooseAdapter;
+import com.chris.pss.adapter.TeacherMajorChooseAdapter;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.service.ProjectDataHttpRequest;
+import com.chris.pss.fragment.TeacherProjectListFragment;
 import com.chris.pss.utils.EmptyUtils;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,9 +54,7 @@ public class TeacherCreateProjectActivity extends BaseActivity {
     private void initViews() {
         initToolBar(mToolbar);
         //
-        mSpMajor.setAdapter(new MajorChooseAdapter(this, TeacherUtils.getMajorList()));
-        //
-
+        mSpMajor.setAdapter(new TeacherMajorChooseAdapter(this, TeacherUtils.getMajorList()));
     }
 
     @OnClick({R.id.btn_create})
@@ -83,7 +84,7 @@ public class TeacherCreateProjectActivity extends BaseActivity {
             ToastUtils.showToast("请选择目标专业");
             return;
         }
-        postCreateProject( majorEntity.getId(), IApp.teacher.getId(), title, detail, starsNum);
+        postCreateProject(majorEntity.getId(), IApp.teacher.getId(), title, detail, starsNum);
     }
 
     private void postCreateProject(int majorId, int teacherId, String title, String detail, int ranking) {
@@ -92,7 +93,9 @@ public class TeacherCreateProjectActivity extends BaseActivity {
                     @Override
                     public void onNext(BaseResponse<SimpleFlagEntity> response) {
                         ToastUtils.showToast("创建成功");
+                        //返回，并通知刷新
                         finish();
+                        EventBus.getDefault().post(new TeacherProjectListFragment.ProjectCreateSuccessEvent());
                     }
 
                     @Override

@@ -18,9 +18,9 @@ import butterknife.ButterKnife;
  * Created by zht on 2017/5/19.
  */
 
-public class RvMajorListAdapter extends BaseRvAdapter<DepartEntity> {
+public class RvTeacherAdminMajorListAdapter extends BaseRvAdapter<DepartEntity> {
 
-    public RvMajorListAdapter(Context context, List<DepartEntity> list, OnItemClickListener<DepartEntity> listener) {
+    public RvTeacherAdminMajorListAdapter(Context context, List<DepartEntity> list, OnItemClickListener<DepartEntity> listener) {
         super(context, list, listener);
     }
 
