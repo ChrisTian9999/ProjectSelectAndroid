@@ -45,8 +45,8 @@ public class RvTeacherProjectListAdapter extends BaseRvAdapter<ProjectEntity> {
         TextView mTvProjectMajor;
         @BindView(R.id.mrb_project_star)
         MaterialRatingBar mMrbProjectStar;
-        @BindView(R.id.expandable_text)
-        TextView mExpandableText;
+        @BindView(R.id.tv_project_detail)
+        TextView mTvProjectDetail;
         @BindView(R.id.tv_project_checking)
         TextView mTvProjectChecking;
         @BindView(R.id.tv_project_stu)
@@ -69,7 +69,7 @@ public class RvTeacherProjectListAdapter extends BaseRvAdapter<ProjectEntity> {
             //难度
             mMrbProjectStar.setProgress(data.getRanking());
             //详情
-            mExpandableText.setText(data.getDetail());
+            mTvProjectDetail.setText(data.getDetail());
             //checking / student / null
             if (1 == data.getIsChecked()) {//审核已通过
                 mTvProjectChecking.setVisibility(View.GONE);
