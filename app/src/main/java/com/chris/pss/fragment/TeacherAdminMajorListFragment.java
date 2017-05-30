@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.pss.R;
+import com.chris.pss.activity.TeacherAdminMajorProjectListActivity;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvMajorListAdapter;
 import com.chris.pss.app.IApp;
@@ -117,7 +118,8 @@ public class TeacherAdminMajorListFragment extends Fragment {
             @Override
             public void OnItemClick(View view, int position, DepartEntity data) {
                 switch (view.getId()) {
-                    case R.id.rl_major_root://点击item
+                    case R.id.rl_major_root://点击item跳转到专业的选题列表
+                        TeacherAdminMajorProjectListActivity.JumpHere(getContext(), data);
                         break;
                     case R.id.iv_major_reset_time:
                         resetTime(data);

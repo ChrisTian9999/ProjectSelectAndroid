@@ -12,8 +12,7 @@ import com.chris.pss.fragment.TeacherAdminProjectCheckListFragment;
  */
 
 public class TeacherAdminPagerAdapter extends FragmentPagerAdapter {
-
-    private String[] titleList = {"选题时间", "课题审核"};
+    private String[] titleList = {"专业", "课题审核"};
     private Fragment[] mFragmentList = new Fragment[2];
 
     public TeacherAdminPagerAdapter(FragmentManager fm) {
