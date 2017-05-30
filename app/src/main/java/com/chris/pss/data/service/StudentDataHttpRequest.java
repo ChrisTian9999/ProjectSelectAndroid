@@ -11,6 +11,7 @@ package com.chris.pss.data.service;
 import android.content.Context;
 
 import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.entity.SimpleCountEntity;
 import com.chris.pss.data.entity.StudentEntity;
 
@@ -58,6 +59,15 @@ public class StudentDataHttpRequest extends HttpRequest {
      */
     public void getOnlineCount(Subscriber<BaseResponse<SimpleCountEntity>> subscriber) {
         Observable<BaseResponse<SimpleCountEntity>> observable = mStudentDataService.getOnlineCount(12000L);
+        toSubscribe(observable, subscriber);
+    }
+
+
+    /**
+     * 返回学生选择的课题
+     */
+    public void getProjectBySno(Subscriber<BaseResponse<ProjectEntity>> subscriber, String sno) {
+        Observable<BaseResponse<ProjectEntity>> observable = mStudentDataService.getProjectBySno(sno);
         toSubscribe(observable, subscriber);
     }
 

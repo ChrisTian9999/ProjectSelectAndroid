@@ -24,6 +24,7 @@ import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecorati
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,6 +42,8 @@ public class StudentProjectListFragment extends Fragment {
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout mSrlRefresh;
     Unbinder unbinder;
+
+    private List<ProjectEntity> mProjectList = new ArrayList<>();
     private RvProjectAdapter mAdapter;
 
     public StudentProjectListFragment() {
@@ -86,7 +89,7 @@ public class StudentProjectListFragment extends Fragment {
 
     @NonNull
     private RvProjectAdapter getAdapter() {
-        return new RvProjectAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
+        return new RvProjectAdapter(getContext(), mProjectList, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
             @Override
             public void OnItemClick(View view, int position, ProjectEntity data) {
                 switch (view.getId()) {
@@ -95,6 +98,7 @@ public class StudentProjectListFragment extends Fragment {
                     case R.id.ll_project_student:
                         break;
                     case R.id.iv_project_check:
+                        postSelectProject(position, data);
                         break;
                     default:
                         break;
@@ -103,12 +107,34 @@ public class StudentProjectListFragment extends Fragment {
         }, true);
     }
 
+    public void postSelectProject(final int position, ProjectEntity entity) {
+        ProjectDataHttpRequest.newInstance(IApp.context)
+                .postSelectProject(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<ProjectEntity>>() {
+                    @Override
+                    public void onNext(BaseResponse<ProjectEntity> response) {
+                        ToastUtils.showToast("恭喜您，选题成功！");
+                        mProjectList.set(position, response.getData());
+                        mAdapter.notifyItemChanged(position);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.showToast(e.getMessage());
+                    }
+                }, getContext()), entity.getId(), StudentUtils.getId());
+    }
+
     public void fetchMajorCheckedList() {
         ProjectDataHttpRequest.newInstance(IApp.context)
                 .getMajorCheckedProjectList(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<ProjectEntity>>>() {
                     @Override
                     public void onNext(BaseResponse<List<ProjectEntity>> response) {
-                        mAdapter.setList(response.getData());
+                        List<ProjectEntity> projectList = response.getData();
+                        mProjectList.clear();
+                        if (projectList != null) {
+                            mProjectList.addAll(projectList);
+                        }
+                        mAdapter.notifyDataSetChanged();
                         finishRefresh();
                     }
 

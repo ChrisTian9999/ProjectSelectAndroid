@@ -6,6 +6,10 @@ package com.chris.pss.app;
 
 public class StudentUtils {
 
+
+    public static int getId() {
+        return IApp.student.getId();
+    }
     /**
      * 专业id
      */

@@ -72,4 +72,14 @@ public interface ProjectDataService {
             @Path("projectId") int projectId,
             @Field("isChecked") Boolean isChecked
     );
+
+
+    /**
+     * 选题
+     */
+    @POST("project/{projectId}/student/{studentId}/select")
+    Observable<BaseResponse<ProjectEntity>> postSelectProject(
+            @Path("projectId") int projectId,
+            @Path("studentId") int studentId
+    );
 }

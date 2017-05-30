@@ -47,6 +47,7 @@ public class ProjectDataHttpRequest extends HttpRequest {
 
     /**
      * 获得教师的所有课题
+     *
      * @param tno 教师号
      */
     public void getProjectListByTno(Subscriber<BaseResponse<List<ProjectEntity>>> subscriber, String tno) {
@@ -65,7 +66,7 @@ public class ProjectDataHttpRequest extends HttpRequest {
     /**
      * 某个专业majorId，的通过审核的课题的列表
      */
-    public void getMajorCheckedProjectList(Subscriber<BaseResponse<List<ProjectEntity>>> subscriber, int majorId ){
+    public void getMajorCheckedProjectList(Subscriber<BaseResponse<List<ProjectEntity>>> subscriber, int majorId) {
         Observable<BaseResponse<List<ProjectEntity>>> observable = mProjectDataService.getMajorCheckedProjectList(majorId);
         toSubscribe(observable, subscriber);
     }
@@ -78,4 +79,13 @@ public class ProjectDataHttpRequest extends HttpRequest {
         Observable<BaseResponse<SimpleFlagEntity>> observable = mProjectDataService.postResetCheckState(projectId, isChecked);
         toSubscribe(observable, subscriber);
     }
+
+    /**
+     * 选题
+     */
+    public void postSelectProject(Subscriber<BaseResponse<ProjectEntity>> subscriber, int projectId, int studentId) {
+        Observable<BaseResponse<ProjectEntity>> observable = mProjectDataService.postSelectProject(projectId, studentId);
+        toSubscribe(observable, subscriber);
+    }
+
 }
