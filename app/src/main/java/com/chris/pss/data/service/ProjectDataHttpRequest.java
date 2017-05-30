@@ -62,6 +62,14 @@ public class ProjectDataHttpRequest extends HttpRequest {
         toSubscribe(observable, subscriber);
     }
 
+    /**
+     * 某个专业majorId，的通过审核的课题的列表
+     */
+    public void getMajorCheckedProjectList(Subscriber<BaseResponse<List<ProjectEntity>>> subscriber, int majorId ){
+        Observable<BaseResponse<List<ProjectEntity>>> observable = mProjectDataService.getMajorCheckedProjectList(majorId);
+        toSubscribe(observable, subscriber);
+    }
+
 
     /**
      * 审核项目的状态

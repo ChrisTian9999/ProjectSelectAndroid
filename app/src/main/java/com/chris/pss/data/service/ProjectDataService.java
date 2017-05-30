@@ -56,6 +56,14 @@ public interface ProjectDataService {
     );
 
     /**
+     * 某个专业majorId，的通过审核的课题的列表
+     */
+    @GET("project/major/{majorId}/list/checked")
+    Observable<BaseResponse<List<ProjectEntity>>> getMajorCheckedProjectList(
+            @Path("majorId") int majorId
+    );
+
+    /**
      * 审核项目的状态
      */
     @FormUrlEncoded

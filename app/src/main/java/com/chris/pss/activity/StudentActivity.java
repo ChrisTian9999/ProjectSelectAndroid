@@ -14,12 +14,9 @@ import android.widget.TextView;
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.StudentUtils;
-import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.fragment.BlankFragment;
 import com.chris.pss.fragment.MajorListFragment;
-import com.chris.pss.fragment.TeacherAdminFragment;
-import com.chris.pss.fragment.TeacherNotAdminFragment;
-import com.chris.pss.fragment.TeacherProjectListFragment;
+import com.chris.pss.fragment.StudentProjectListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,9 +61,9 @@ public class StudentActivity extends BaseActivity
         mHeaderName.setText(IApp.student.getName());
 
         //默认打开菜单
-//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance());
-//        ft.commit();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fl_container, StudentProjectListFragment.newInstance());
+        ft.commit();
         //
         setTitle(R.string.menu_student_all_project);
     }
@@ -88,18 +85,13 @@ public class StudentActivity extends BaseActivity
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()) {
             case R.id.nav_project_all:
-                ft.replace(R.id.fl_container, TeacherProjectListFragment.newInstance());
-                break;
-            case R.id.nav_admin:
-                if (TeacherUtils.checkIsAdmin()) {
-                    ft.replace(R.id.fl_container, TeacherAdminFragment.newInstance());
-                } else {
-                    ft.replace(R.id.fl_container, TeacherNotAdminFragment.newInstance());
-                }
+                ft.replace(R.id.fl_container, StudentProjectListFragment.newInstance());
                 break;
             case R.id.nav_time:
                 ft.replace(R.id.fl_container, MajorListFragment.newInstance(StudentUtils.getDepartId()));
                 break;
+            case R.id.nav_student_my_project:
+//                break;
             case R.id.nav_settings:
 //                break;
             default:

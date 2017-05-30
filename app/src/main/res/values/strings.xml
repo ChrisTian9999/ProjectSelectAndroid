@@ -36,7 +36,7 @@
     <string name="hint_pls_project_name">请输入课题标题</string>
     <string name="hint_pls_project_detail">请输入详情内容</string>
     <string name="create_project">创建课题</string>
-    <string name="teacher_project_checking">审核中..</string>
+    <string name="teacher_project_checking">正在审核中</string>
     <string name="label_project_student">选题：</string>
     <string name="hint_project_detail">无内容</string>
     <string name="label_project_teacher">出题：</string>

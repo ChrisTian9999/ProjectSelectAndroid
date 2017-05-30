@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:hint="@string/hint_project_detail"
-            android:textColor="@color/colorTextColorGray"
+            android:textColor="@color/colorText"
             android:textSize="14sp"
             tools:text="专业"/>
 
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
             android:textSize="14sp"
-            tools:text="明明/201301"/>
+            tools:text="明明/职称"/>
 
     </LinearLayout>
 
@@ -119,7 +119,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/teacher_project_checking"
         android:textColor="@color/colorChecking"
-        android:textSize="16sp"/>
+        android:textSize="14sp"/>
 
     <ImageView
         android:id="@+id/iv_project_check"

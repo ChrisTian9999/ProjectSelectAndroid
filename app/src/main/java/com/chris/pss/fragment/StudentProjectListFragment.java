@@ -15,6 +15,7 @@ import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvProjectAdapter;
 import com.chris.pss.app.IApp;
+import com.chris.pss.app.StudentUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.service.ProjectDataHttpRequest;
@@ -22,8 +23,6 @@ import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecoration;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -61,7 +60,6 @@ public class StudentProjectListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_project_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
         initViews();
         return view;
     }
@@ -107,7 +105,7 @@ public class StudentProjectListFragment extends Fragment {
 
     public void fetchMajorCheckedList() {
         ProjectDataHttpRequest.newInstance(IApp.context)
-                .getProjectListByTno(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<ProjectEntity>>>() {
+                .getMajorCheckedProjectList(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<ProjectEntity>>>() {
                     @Override
                     public void onNext(BaseResponse<List<ProjectEntity>> response) {
                         mAdapter.setList(response.getData());
@@ -119,7 +117,7 @@ public class StudentProjectListFragment extends Fragment {
                         ToastUtils.showToast(e.getMessage());
                         finishRefresh();
                     }
-                }, getContext()), IApp.teacher.getTno());
+                }, getContext()), StudentUtils.getMajorId());
     }
 
     private void refresh() {
