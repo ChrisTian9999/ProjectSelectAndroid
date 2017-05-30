@@ -19,6 +19,7 @@ import com.chris.pss.fragment.MajorListFragment;
 import com.chris.pss.fragment.TeacherAdminFragment;
 import com.chris.pss.fragment.TeacherNotAdminFragment;
 import com.chris.pss.fragment.TeacherProjectListFragment;
+import com.chris.pss.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,13 +71,22 @@ public class TeacherActivity extends BaseActivity
         setTitle(R.string.menu_teacher_my_project);
     }
 
+
+    private long lastTime = 0;
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {//首先关侧滑菜单
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            long cur = System.currentTimeMillis();
+            if (cur - lastTime > 2000) { //不在2s内
+                lastTime = cur;
+                ToastUtils.showToast("再按一次退出应用");
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
