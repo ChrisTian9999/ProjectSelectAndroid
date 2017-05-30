@@ -55,4 +55,13 @@ public interface ProjectDataService {
             @Query("isChecked") boolean isChecked
     );
 
+    /**
+     * 审核项目的状态
+     */
+    @FormUrlEncoded
+    @POST("project/{projectId}/reset_state")
+    Observable<BaseResponse<SimpleFlagEntity>> postResetCheckState(
+            @Path("projectId") int projectId,
+            @Field("isChecked") Boolean isChecked
+    );
 }

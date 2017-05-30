@@ -5,7 +5,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.Spinner;
 
 import com.chris.pss.R;
@@ -27,6 +26,7 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 public class TeacherCreateProjectActivity extends BaseActivity {
 
@@ -38,8 +38,8 @@ public class TeacherCreateProjectActivity extends BaseActivity {
     EditText mEtDetail;
     @BindView(R.id.sp_major)
     Spinner mSpMajor;
-    @BindView(R.id.rb_rank)
-    RatingBar mRbRank;
+    @BindView(R.id.mrb_rank)
+    MaterialRatingBar mRbRank;
     @BindView(R.id.btn_create)
     Button mBtnCreate;
 
