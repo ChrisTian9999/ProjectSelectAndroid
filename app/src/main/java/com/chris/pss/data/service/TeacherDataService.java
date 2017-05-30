@@ -33,7 +33,7 @@ public interface TeacherDataService {
     /**
      * 获得教师的基本信息，包括学院
      */
-    @GET("teacher/tno/{tno}")
+    @GET("teacher/{tno}")
     Observable<BaseResponse<TeacherLoginResult>> getTchInfo(@Path("tno") String tno);
 
 }

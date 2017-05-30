@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.chris.pss.data.entity.DepartEntity;
-import com.chris.pss.data.entity.StuEntity;
+import com.chris.pss.data.entity.StudentEntity;
 import com.chris.pss.data.entity.TeacherEntity;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class IApp extends Application {
     /**
      * 学生信息
      */
-    public static StuEntity stu = null;
+    public static StudentEntity student = null;
 
     /**
      * 当前登陆教师信息

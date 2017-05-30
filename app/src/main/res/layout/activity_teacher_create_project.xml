@@ -77,7 +77,6 @@
                 android:progress="3"
                 android:stepSize="1"/>
 
-
             <Button
                 android:id="@+id/btn_create"
                 android:layout_width="match_parent"

@@ -4,7 +4,7 @@ public class ProjectEntity {
     private Integer id;
     private DepartEntity major;//专业
     private TeacherEntity teacher;
-    private StuEntity student;
+    private StudentEntity student;
     private String title;
     private String detail;
     private Integer ranking;
@@ -79,11 +79,11 @@ public class ProjectEntity {
         this.isFinish = isFinish;
     }
 
-    public StuEntity getStudent() {
+    public StudentEntity getStudent() {
         return student;
     }
 
-    public void setStudent(StuEntity student) {
+    public void setStudent(StudentEntity student) {
         this.student = student;
     }
 

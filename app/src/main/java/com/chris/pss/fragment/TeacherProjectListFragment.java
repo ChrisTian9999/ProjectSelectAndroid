@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.chris.pss.R;
 import com.chris.pss.activity.TeacherCreateProjectActivity;
 import com.chris.pss.adapter.BaseRvAdapter;
-import com.chris.pss.adapter.RvTeacherProjectListAdapter;
+import com.chris.pss.adapter.RvProjectAdapter;
 import com.chris.pss.app.IApp;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
@@ -49,7 +49,7 @@ public class TeacherProjectListFragment extends Fragment {
     @BindView(R.id.fab_add)
     FloatingActionButton mFabAdd;
     Unbinder unbinder;
-    private RvTeacherProjectListAdapter mAdapter;
+    private RvProjectAdapter mAdapter;
 
     public TeacherProjectListFragment() {
         // Required empty public constructor
@@ -94,12 +94,14 @@ public class TeacherProjectListFragment extends Fragment {
     }
 
     @NonNull
-    private RvTeacherProjectListAdapter getAdapter() {
-        return new RvTeacherProjectListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
+    private RvProjectAdapter getAdapter() {
+        return new RvProjectAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
             @Override
             public void OnItemClick(View view, int position, ProjectEntity data) {
                 switch (view.getId()) {
                     case R.id.rl_project_root:
+                        break;
+                    case R.id.ll_project_teacher:
                         break;
                     case R.id.ll_project_student:
                         break;
@@ -107,7 +109,7 @@ public class TeacherProjectListFragment extends Fragment {
                         break;
                 }
             }
-        });
+        }, false);
     }
 
 

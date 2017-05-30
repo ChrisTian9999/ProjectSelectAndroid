@@ -16,7 +16,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
-import com.chris.pss.adapter.RvTeacherAdminMajorListAdapter;
+import com.chris.pss.adapter.RvMajorListAdapter;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
@@ -45,7 +45,7 @@ public class TeacherAdminMajorListFragment extends Fragment {
     RecyclerView mRecycler;
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout mSrlRefresh;
-    private RvTeacherAdminMajorListAdapter mAdapter;
+    private RvMajorListAdapter mAdapter;
 
     public TeacherAdminMajorListFragment() {
     }
@@ -112,19 +112,19 @@ public class TeacherAdminMajorListFragment extends Fragment {
     }
 
     @NonNull
-    private RvTeacherAdminMajorListAdapter getRvMajorListAdapter() {
-        return new RvTeacherAdminMajorListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<DepartEntity>() {
+    private RvMajorListAdapter getRvMajorListAdapter() {
+        return new RvMajorListAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<DepartEntity>() {
             @Override
             public void OnItemClick(View view, int position, DepartEntity data) {
                 switch (view.getId()) {
-                    case R.id.rl_root://点击item
+                    case R.id.rl_major_root://点击item
                         break;
                     case R.id.iv_reset_time:
                         resetTime(data);
                         break;
                 }
             }
-        });
+        }, true);
     }
 
 

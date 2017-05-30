@@ -10,7 +10,6 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="menu_teacher_my_project">我的课题</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="gender_girl">女</string>
@@ -18,8 +17,6 @@
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="title_info_teacher">教师信息</string>
-    <string name="menu_teacher_admin">教务管理</string>
-    <string name="title_teacher_admin">教务管理</string>
     <string name="teacher_not_admin">sorry! you are not admin!</string>
     <string name="loading_text">正在加载中~</string>
     <string name="btn_admin_modify">修改</string>
@@ -39,9 +36,14 @@
     <string name="hint_pls_project_name">请输入课题标题</string>
     <string name="hint_pls_project_detail">请输入详情内容</string>
     <string name="create_project">创建课题</string>
-    <string name="teacher_project_checking">审核中</string>
-    <string name="label_project_student">选题学生：</string>
+    <string name="teacher_project_checking">审核中..</string>
+    <string name="label_project_student">选题：</string>
     <string name="hint_project_detail">无内容</string>
+    <string name="label_project_teacher">出题：</string>
     <string name="menu_settings">设置</string>
-    <string name="label_project_teacher">出题人：</string>
+    <string name="menu_teacher_my_project">我的出题</string>
+    <string name="menu_student_all_project">所有课题</string>
+    <string name="menu_student_my_project">我的选题</string>
+    <string name="menu_teacher_admin">教务管理</string>
+    <string name="title_teacher_admin">教务管理</string>
 </resources>

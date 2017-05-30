@@ -15,17 +15,16 @@ import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvProjectAdapter;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
-import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.service.ProjectDataHttpRequest;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecoration;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
 
-import java.util.ArrayList;
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,7 +34,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeacherAdminProjectCheckListFragment extends Fragment {
+public class StudentProjectListFragment extends Fragment {
 
 
     @BindView(R.id.recycler)
@@ -43,17 +42,15 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout mSrlRefresh;
     Unbinder unbinder;
-
-    private List<ProjectEntity> mProjectList = new ArrayList<>();
     private RvProjectAdapter mAdapter;
 
-    public TeacherAdminProjectCheckListFragment() {
+    public StudentProjectListFragment() {
         // Required empty public constructor
     }
 
-    public static TeacherAdminProjectCheckListFragment newInstance() {
+    public static StudentProjectListFragment newInstance() {
         Bundle args = new Bundle();
-        TeacherAdminProjectCheckListFragment fragment = new TeacherAdminProjectCheckListFragment();
+        StudentProjectListFragment fragment = new StudentProjectListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,8 +59,9 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_teacher_admin_project_check_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_student_project_list, container, false);
         unbinder = ButterKnife.bind(this, view);
+        EventBus.getDefault().register(this);
         initViews();
         return view;
     }
@@ -81,7 +79,7 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
         mSrlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getDepartProjectListByCheckState();
+                fetchMajorCheckedList();
             }
         });
         //
@@ -90,18 +88,15 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
 
     @NonNull
     private RvProjectAdapter getAdapter() {
-        return new RvProjectAdapter(getContext(), mProjectList, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
+        return new RvProjectAdapter(getContext(), null, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
             @Override
             public void OnItemClick(View view, int position, ProjectEntity data) {
                 switch (view.getId()) {
                     case R.id.rl_project_root:
                         break;
-                    case R.id.ll_project_teacher:
-                        break;
                     case R.id.ll_project_student:
                         break;
-                    case R.id.iv_project_check://通过审核
-                        postCheckProject(position, data);
+                    case R.id.iv_project_check:
                         break;
                     default:
                         break;
@@ -110,34 +105,12 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
         }, true);
     }
 
-    public void postCheckProject(final int position, final ProjectEntity data) {
+    public void fetchMajorCheckedList() {
         ProjectDataHttpRequest.newInstance(IApp.context)
-                .postResetCheckState(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<SimpleFlagEntity>>() {
-                    @Override
-                    public void onNext(BaseResponse<SimpleFlagEntity> response) {
-                        mProjectList.remove(data);
-                        mAdapter.notifyItemRemoved(position);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        ToastUtils.showToast(e.getMessage());
-                    }
-                }, getContext()), data.getId(), true);
-    }
-
-
-    public void getDepartProjectListByCheckState() {
-        ProjectDataHttpRequest.newInstance(IApp.context)
-                .getDepartProjectListByCheckState(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<ProjectEntity>>>() {
+                .getProjectListByTno(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<List<ProjectEntity>>>() {
                     @Override
                     public void onNext(BaseResponse<List<ProjectEntity>> response) {
-                        mProjectList.clear();
-                        if (response.getData() != null) {
-                            mProjectList.addAll(response.getData());
-                        }
-                        mAdapter.notifyDataSetChanged();
-                        //
+                        mAdapter.setList(response.getData());
                         finishRefresh();
                     }
 
@@ -146,16 +119,15 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
                         ToastUtils.showToast(e.getMessage());
                         finishRefresh();
                     }
-                }, getContext()), TeacherUtils.getMyDepartId(), false);
+                }, getContext()), IApp.teacher.getTno());
     }
-
 
     private void refresh() {
         mSrlRefresh.post(new Runnable() {
             @Override
             public void run() {
                 mSrlRefresh.setRefreshing(true);
-                getDepartProjectListByCheckState();
+                fetchMajorCheckedList();
             }
         });
     }
@@ -174,5 +146,4 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
 }

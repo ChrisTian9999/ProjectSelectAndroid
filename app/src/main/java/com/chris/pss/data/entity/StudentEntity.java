@@ -4,18 +4,16 @@ package com.chris.pss.data.entity;
  * Created by noonecode on 2017/5/13.
  */
 
-public class StuEntity {
+public class StudentEntity {
     private int id;
-    private int departmentId;
+    private DepartEntity major;
     private String sno;
     private String name;
     private String pwd;
+    private String classname;
     private int gender;
     private String tel;
     private long heartBeat;
-
-    public StuEntity() {
-    }
 
     public int getId() {
         return id;
@@ -25,12 +23,12 @@ public class StuEntity {
         this.id = id;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public DepartEntity getMajor() {
+        return major;
     }
 
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
+    public void setMajor(DepartEntity major) {
+        this.major = major;
     }
 
     public String getSno() {
@@ -55,6 +53,14 @@ public class StuEntity {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
     }
 
     public int getGender() {
@@ -83,12 +89,13 @@ public class StuEntity {
 
     @Override
     public String toString() {
-        return "StuEntity{" +
+        return "StudentEntity{" +
                 "id=" + id +
-                ", departmentId=" + departmentId +
+                ", major=" + major +
                 ", sno='" + sno + '\'' +
                 ", name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
+                ", classname='" + classname + '\'' +
                 ", gender=" + gender +
                 ", tel='" + tel + '\'' +
                 ", heartBeat=" + heartBeat +

@@ -18,10 +18,13 @@ import butterknife.ButterKnife;
  * Created by zht on 2017/5/19.
  */
 
-public class RvTeacherAdminMajorListAdapter extends BaseRvAdapter<DepartEntity> {
+public class RvMajorListAdapter extends BaseRvAdapter<DepartEntity> {
 
-    public RvTeacherAdminMajorListAdapter(Context context, List<DepartEntity> list, OnItemClickListener<DepartEntity> listener) {
+    private boolean isShowModify;
+
+    public RvMajorListAdapter(Context context, List<DepartEntity> list, OnItemClickListener<DepartEntity> listener, boolean isShowModify) {
         super(context, list, listener);
+        this.isShowModify = isShowModify;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class RvTeacherAdminMajorListAdapter extends BaseRvAdapter<DepartEntity> 
         TextView mTvMajorEnd;
         @BindView(R.id.tv_major_state)
         TextView mTvState;
-        @BindView(R.id.iv_reset_time)
+        @BindView(R.id.iv_major_reset_time)
         ImageView mIvResetTime;
 
         ViewHolder(View view) {
@@ -75,6 +78,7 @@ public class RvTeacherAdminMajorListAdapter extends BaseRvAdapter<DepartEntity> 
                 default:
                     break;
             }
+            mIvResetTime.setVisibility(isShowModify ? View.VISIBLE : View.GONE);
             //监听
             setListener(itemView, position, data, mListener);
             setListener(mIvResetTime, position, data, mListener);

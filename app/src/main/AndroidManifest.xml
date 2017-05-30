@@ -45,6 +45,10 @@
             android:screenOrientation="portrait"
             />
         <activity
+            android:name=".activity.StudentActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
             android:name=".activity.TeacherInfoActivity"
             android:label="@string/title_info_teacher"
             android:screenOrientation="portrait"

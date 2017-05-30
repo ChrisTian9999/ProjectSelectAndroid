@@ -60,23 +60,11 @@
         android:textSize="14sp"
         tools:text="这是一个很长的内容，这是一个很长的内容，这是一个很长的内容，这是一个很长的内容，这是一个很长的内容，这是一个很长的内容"/>
 
-
-    <TextView
-        android:id="@+id/tv_project_checking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_project_detail"
-        android:layout_marginTop="4dp"
-        android:text="@string/teacher_project_checking"
-        android:textColor="@color/colorChecking"
-        android:textSize="14sp"/>
-
-
     <LinearLayout
         android:id="@+id/ll_project_teacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_project_checking"
+        android:layout_below="@id/tv_project_detail"
         android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
@@ -97,10 +85,46 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_project_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_project_teacher"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_project_student"
+            android:textColor="@color/colorTextColorGray"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_project_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="14sp"
+            tools:text="明明/201301"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_project_checking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_project_student"
+        android:layout_marginTop="4dp"
+        android:text="@string/teacher_project_checking"
+        android:textColor="@color/colorChecking"
+        android:textSize="16sp"/>
+
     <ImageView
         android:id="@+id/iv_project_check"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/bg_item_ripple"

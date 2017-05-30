@@ -12,7 +12,7 @@ import android.widget.EditText;
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.data.entity.BaseResponse;
-import com.chris.pss.data.entity.StuLoginResult;
+import com.chris.pss.data.entity.StudentEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;
 import com.chris.pss.data.service.StudentDataHttpRequest;
 import com.chris.pss.data.service.TeacherDataHttpRequest;
@@ -120,12 +120,17 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         StudentDataHttpRequest.newInstance(IApp.context)
-                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<StuLoginResult>>() {
+                .postLogin(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<StudentEntity>>() {
                     @Override
-                    public void onNext(BaseResponse<StuLoginResult> response) {
+                    public void onNext(BaseResponse<StudentEntity> response) {
                         LogUtils.e(response);
-//                        ToastUtils.showToast(SimpleUtils.getWelcomeString(response.getData().getStud()));
-                        loginSuc(response.getData());
+
+                        StudentEntity studentEntity = response.getData();
+                        if (studentEntity != null) {
+                            String studentName = studentEntity.getName();
+                            ToastUtils.showToast("欢迎您，" + studentName);
+                            loginSuc(studentEntity);
+                        }
                     }
 
                     @Override
@@ -135,12 +140,12 @@ public class LoginActivity extends BaseActivity {
                 }, LoginActivity.this), sno, pwd);
     }
 
-    private void loginSuc(StuLoginResult result) {
-        IApp.stu = result.getStud();
+    private void loginSuc(StudentEntity entity) {
+        IApp.student = entity;
         //跳转到学生页面
-//        Intent intent = new Intent(this, TeacherActivity.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(this, StudentActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
