@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.TeacherUtils;
+import com.chris.pss.fragment.AboutUsFragment;
 import com.chris.pss.fragment.BlankFragment;
 import com.chris.pss.fragment.MajorListFragment;
 import com.chris.pss.fragment.TeacherAdminFragment;
@@ -108,6 +109,9 @@ public class TeacherActivity extends BaseActivity
                 break;
             case R.id.nav_time:
                 ft.replace(R.id.fl_container, MajorListFragment.newInstance(TeacherUtils.getMyDepartId()));
+                break;
+            case R.id.nav_about_us:
+                ft.replace(R.id.fl_container, AboutUsFragment.newInstance());
                 break;
             case R.id.nav_settings:
 //                break;

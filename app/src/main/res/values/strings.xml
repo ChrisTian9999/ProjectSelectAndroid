@@ -47,4 +47,7 @@
     <string name="menu_teacher_admin">教务管理</string>
     <string name="title_teacher_admin">教务管理</string>
     <string name="menu_time">选题时间</string>
+    <string name="menu_info">关于我们</string>
+    <string name="about_us_1">指导老师：郁书好\n学生：田志会</string>
+    <string name="about_us_2">努力才有进步，付出才有回报!!!</string>
 </resources>
