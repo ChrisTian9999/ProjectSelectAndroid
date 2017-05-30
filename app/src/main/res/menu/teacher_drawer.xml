@@ -9,6 +9,12 @@
             android:checked="true"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_teacher_my_project"/>
+
+        <item
+            android:id="@+id/nav_time"
+            android:icon="@drawable/ic_menu_time"
+            android:title="@string/menu_time"/>
+
         <item
             android:id="@+id/nav_admin"
             android:icon="@drawable/ic_menu_admin"

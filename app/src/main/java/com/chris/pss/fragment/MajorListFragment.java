@@ -3,6 +3,7 @@ package com.chris.pss.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,18 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvMajorListAdapter;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
-import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.service.DepartDataHttpRequest;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecoration;
@@ -37,32 +33,47 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeacherAdminMajorListFragment extends Fragment {
+public class MajorListFragment extends Fragment {
 
 
-    Unbinder unbinder;
     @BindView(R.id.recycler)
     RecyclerView mRecycler;
     @BindView(R.id.srl_refresh)
     SwipeRefreshLayout mSrlRefresh;
-    private RvMajorListAdapter mAdapter;
+    Unbinder unbinder;
 
-    public TeacherAdminMajorListFragment() {
+
+    private RvMajorListAdapter mAdapter;
+    private int mDepartId;
+
+    public MajorListFragment() {
     }
 
-    public static TeacherAdminMajorListFragment newInstance() {
+    /**
+     * 所在学院的id
+     */
+    public static MajorListFragment newInstance(int departId) {
 
         Bundle args = new Bundle();
-
-        TeacherAdminMajorListFragment fragment = new TeacherAdminMajorListFragment();
+        args.putInt("departId", departId);
+        MajorListFragment fragment = new MajorListFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        if (args != null) {
+            mDepartId = args.getInt("departId");
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_teacher_admin_major_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_major_list, container, false);
         unbinder = ButterKnife.bind(this, view);
         initViews();
         return view;
@@ -108,7 +119,7 @@ public class TeacherAdminMajorListFragment extends Fragment {
                         ToastUtils.showToast(e.getMessage());
                         finishRefresh();
                     }
-                }, getContext()), TeacherUtils.getMyDepartId());
+                }, getContext()), mDepartId);
     }
 
     @NonNull
@@ -119,54 +130,10 @@ public class TeacherAdminMajorListFragment extends Fragment {
                 switch (view.getId()) {
                     case R.id.rl_major_root://点击item
                         break;
-                    case R.id.iv_major_reset_time:
-                        resetTime(data);
-                        break;
                 }
             }
-        }, true);
+        }, false);
     }
-
-
-    private void resetTime(final DepartEntity entity) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_admin_reset_time, null);
-        final EditText EtStart = (EditText) view.findViewById(R.id.et_start);
-        final EditText EtEnd = (EditText) view.findViewById(R.id.et_end);
-        EtStart.setText(entity.getTimeBegin());
-        EtEnd.setText(entity.getTimeEnd());
-
-        new MaterialDialog.Builder(getContext())
-                .customView(view, false)
-                .title(R.string.title_dialog_reset_time)
-                .positiveText(R.string.ok)
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog materialDialog, @NonNull DialogAction dialogAction) {
-                        String start = EtStart.getText().toString().trim();
-                        String end = EtEnd.getText().toString().trim();
-                        postModifyMajor(entity.getId(), start, end);
-                    }
-                })
-                .negativeText(R.string.cancel)
-                .show();
-    }
-
-    private void postModifyMajor(int id, String start, String end) {
-        DepartDataHttpRequest.newInstance(IApp.context)
-                .postModifyMajor(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<SimpleFlagEntity>>() {
-                    @Override
-                    public void onNext(BaseResponse<SimpleFlagEntity> response) {
-                        ToastUtils.showToast("修改成功");
-                        refresh();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        ToastUtils.showToast(e.getMessage());
-                    }
-                }, getContext()), id, start, end);
-    }
-
 
     private void refresh() {
         mSrlRefresh.post(new Runnable() {

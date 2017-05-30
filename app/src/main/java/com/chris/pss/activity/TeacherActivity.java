@@ -15,6 +15,7 @@ import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.fragment.BlankFragment;
+import com.chris.pss.fragment.MajorListFragment;
 import com.chris.pss.fragment.TeacherAdminFragment;
 import com.chris.pss.fragment.TeacherNotAdminFragment;
 import com.chris.pss.fragment.TeacherProjectListFragment;
@@ -94,6 +95,9 @@ public class TeacherActivity extends BaseActivity
                 } else {
                     ft.replace(R.id.fl_container, TeacherNotAdminFragment.newInstance());
                 }
+                break;
+            case R.id.nav_time:
+                ft.replace(R.id.fl_container, MajorListFragment.newInstance(TeacherUtils.getMyDepartId()));
                 break;
             case R.id.nav_settings:
 //                break;

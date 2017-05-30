@@ -46,4 +46,5 @@
     <string name="menu_student_my_project">我的选题</string>
     <string name="menu_teacher_admin">教务管理</string>
     <string name="title_teacher_admin">教务管理</string>
+    <string name="menu_time">选题时间</string>
 </resources>
