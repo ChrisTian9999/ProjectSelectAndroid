@@ -56,8 +56,8 @@ public class StudentActivity extends BaseActivity
                 //关闭drawLayout
                 onBackPressed();
                 //
-                String tno = IApp.teacher.getTno();
-                startActivity(TeacherInfoActivity.getJumpIntent(StudentActivity.this, tno));
+                String sno = IApp.student.getSno();
+                StudentInfoActivity.jumpHere(StudentActivity.this, sno);
             }
         });
         TextView mHeaderName = (TextView) mHeaderView.findViewById(R.id.tv_header_name);

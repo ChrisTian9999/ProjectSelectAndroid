@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.TeacherEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;
 import com.chris.pss.data.service.TeacherDataHttpRequest;
@@ -19,9 +20,7 @@ import com.chris.pss.widgets.subscribers.ProgressSubscriber;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.chris.pss.app.IApp.context;
-
-public class TeacherInfoActivity extends BaseActivity {
+public class StudentInfoActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -47,7 +46,7 @@ public class TeacherInfoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_info);
+        setContentView(R.layout.activity_student_info);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
@@ -73,7 +72,7 @@ public class TeacherInfoActivity extends BaseActivity {
     }
 
     private void fetchTchInfo(String tno) {
-        TeacherDataHttpRequest.newInstance(context)
+        TeacherDataHttpRequest.newInstance(IApp.context)
                 .getTchInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TeacherLoginResult>>() {
                     @Override
                     public void onNext(BaseResponse<TeacherLoginResult> response) {
@@ -103,13 +102,14 @@ public class TeacherInfoActivity extends BaseActivity {
         mTvInfoEmail.setText(tch.getEmail());
         mTvInfoIsAdmin.setText(tch.getIsAdmin() == 1 ? R.string.yes : R.string.no);
         //所在学院的信息
-        mTvInfoDepart.setText(tch.getDepart().getName());
+        DepartEntity depart = tch.getDepart();
+        mTvInfoDepart.setText(depart == null ? "无学院信息" : depart.getName());
     }
 
 
-    public static void jumpHere(Context c, String tno) {
-        Intent intent = new Intent(c, TeacherInfoActivity.class);
-        intent.putExtra("tno", tno);
+    public static void jumpHere(Context c, String sno) {
+        Intent intent = new Intent(c, StudentInfoActivity.class);
+        intent.putExtra("sno", sno);
         c.startActivity(intent);
     }
 }

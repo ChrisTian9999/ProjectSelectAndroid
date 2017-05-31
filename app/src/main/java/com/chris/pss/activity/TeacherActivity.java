@@ -59,7 +59,7 @@ public class TeacherActivity extends BaseActivity
                 onBackPressed();
                 //
                 String tno = IApp.teacher.getTno();
-                startActivity(TeacherInfoActivity.getJumpIntent(TeacherActivity.this, tno));
+                TeacherInfoActivity.jumpHere(TeacherActivity.this, tno);
             }
         });
         TextView mHeaderName = (TextView) mHeaderView.findViewById(R.id.tv_header_name);
