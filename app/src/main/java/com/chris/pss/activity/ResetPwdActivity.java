@@ -12,6 +12,7 @@ import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.service.StudentDataHttpRequest;
 import com.chris.pss.data.service.TeacherDataHttpRequest;
+import com.chris.pss.myutils.StudentUtils;
 import com.chris.pss.utils.EmptyUtils;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
@@ -95,7 +96,7 @@ public class ResetPwdActivity extends BaseActivity {
         }
         //
         if (IApp.isStudent) {
-            resetStudentPwd(IApp.student.getSno(), rawPwd, newPwd);
+            resetStudentPwd(StudentUtils.getSno(), rawPwd, newPwd);
         } else {
             resetTeacherPwd(IApp.teacher.getTno(), rawPwd, newPwd);
         }

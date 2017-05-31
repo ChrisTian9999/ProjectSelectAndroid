@@ -12,6 +12,11 @@ public class StudentUtils {
     public static int getId() {
         return IApp.student.getId();
     }
+
+    public static String getSno(){
+        return IApp.student.getSno();
+    }
+
     /**
      * 专业id
      */

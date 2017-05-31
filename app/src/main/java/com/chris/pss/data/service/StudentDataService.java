@@ -70,6 +70,14 @@ public interface StudentDataService {
     );
 
     /**
+     * 移除学生的课题
+     */
+    @GET("student/{sno}/remove_my_project")
+    Observable<BaseResponse<SimpleFlagEntity>> removeMyProject(
+            @Path("sno") String sno
+    );
+
+    /**
      * 修改密码
      */
     @FormUrlEncoded

@@ -82,6 +82,14 @@ public class StudentDataHttpRequest extends HttpRequest {
     }
 
     /**
+     * 移除学生的课题
+     */
+    public void removeMyProject(Subscriber<BaseResponse<SimpleFlagEntity>> subscriber, String sno) {
+        Observable<BaseResponse<SimpleFlagEntity>> observable = mStudentDataService.removeMyProject(sno);
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
      * 重置密码
      */
     public void resetPwd(Subscriber<BaseResponse<SimpleFlagEntity>> subscriber, String tno, String pwd, String newPwd) {

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
+import com.chris.pss.fragment.StudentMyProjectFragment;
 import com.chris.pss.myutils.StudentUtils;
 import com.chris.pss.fragment.AboutUsFragment;
 import com.chris.pss.fragment.BlankFragment;
@@ -56,7 +57,7 @@ public class StudentActivity extends BaseActivity
                 //关闭drawLayout
                 onBackPressed();
                 //
-                String sno = IApp.student.getSno();
+                String sno = StudentUtils.getSno();
                 StudentInfoActivity.jumpHere(StudentActivity.this, sno);
             }
         });
@@ -108,7 +109,8 @@ public class StudentActivity extends BaseActivity
                 ft.replace(R.id.fl_container, AboutUsFragment.newInstance());
                 break;
             case R.id.nav_student_my_project:
-//                break;
+                ft.replace(R.id.fl_container, StudentMyProjectFragment.newInstance());
+                break;
             default:
                 ft.replace(R.id.fl_container, BlankFragment.newInstance());
                 break;

@@ -25,10 +25,17 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 public class RvProjectAdapter extends BaseRvAdapter<ProjectEntity> {
 
     private boolean isShowCheck;
+    private int resIdCheck = -1;
 
     public RvProjectAdapter(Context context, List<ProjectEntity> list, OnItemClickListener<ProjectEntity> listener, boolean isShowCheck) {
         super(context, list, listener);
         this.isShowCheck = isShowCheck;
+    }
+
+    public RvProjectAdapter(Context context, List<ProjectEntity> list, OnItemClickListener<ProjectEntity> listener, boolean isShowCheck, int resIdCheck) {
+        super(context, list, listener);
+        this.isShowCheck = isShowCheck;
+        this.resIdCheck = resIdCheck;
     }
 
 
@@ -92,7 +99,9 @@ public class RvProjectAdapter extends BaseRvAdapter<ProjectEntity> {
             mLlProjectChecking.setVisibility(isChecking ? View.VISIBLE : View.GONE);
             //显示按钮
             mIvProjectCheck.setVisibility(isShowCheck ? View.VISIBLE : View.GONE);
-            //
+            if (resIdCheck != -1) {
+                mIvProjectCheck.setImageResource(resIdCheck);
+            }
             //监听
             setListener(mRlProjectRoot, position, data, mListener);
             setListener(mLlProjectTeacher, position, data, mListener);
