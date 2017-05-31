@@ -1,5 +1,6 @@
 package com.chris.pss.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chris.pss.R;
+import com.chris.pss.activity.BaseActivity;
+import com.chris.pss.activity.LoginActivity;
+import com.chris.pss.activity.ResetPwdActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,8 +48,11 @@ public class SettingsFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_reset_pwd:
+                startActivity(new Intent(getContext(), ResetPwdActivity.class));
                 break;
             case R.id.tv_log_out:
+                EventBus.getDefault().post(new BaseActivity.FinishEvent());
+                startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
         }
     }

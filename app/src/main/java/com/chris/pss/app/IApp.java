@@ -19,6 +19,10 @@ public class IApp extends Application {
     public static boolean isDebug = true;
 
     /**
+     * 登陆方式
+     */
+    public static boolean isStudent = true;
+    /**
      * 学生信息
      */
     public static StudentEntity student = null;

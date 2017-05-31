@@ -105,6 +105,7 @@ public class LoginActivity extends BaseActivity {
      * 教师登录成功
      */
     private void loginSuc(TeacherLoginResult result) {
+        IApp.isStudent = false;
         IApp.teacher = result.getTeacher();//当前教师的信息
         IApp.majors = result.getMajors();//所在学院的所有专业
         //跳转到教师页面
@@ -141,6 +142,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void loginSuc(StudentEntity entity) {
+        IApp.isStudent = true;
         IApp.student = entity;
         //跳转到学生页面
         Intent intent = new Intent(this, StudentActivity.class);

@@ -10,6 +10,9 @@ import android.view.WindowManager;
 
 import com.chris.pss.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 /**
  * Created by noonecode on 2017/5/16.
  */
@@ -19,6 +22,21 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    /**
+     * 接受到FinishEvent事件的时候，finish掉
+     */
+    @Subscribe
+    public void onEvent(FinishEvent event) {
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -42,5 +60,13 @@ public class BaseActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    /**
+     * 退出事件
+     */
+    public static class FinishEvent {
+
     }
 }
