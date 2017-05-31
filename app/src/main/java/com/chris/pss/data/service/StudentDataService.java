@@ -11,6 +11,7 @@ package com.chris.pss.data.service;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.entity.SimpleCountEntity;
+import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.entity.StudentEntity;
 
 import retrofit2.http.Field;
@@ -58,6 +59,17 @@ public interface StudentDataService {
     @GET("student/{sno}/project")
     Observable<BaseResponse<ProjectEntity>> getProjectBySno(
             @Path("sno") String sno
+    );
+
+    /**
+     * 修改密码
+     */
+    @FormUrlEncoded
+    @POST("student/{tno}/reset_pwd")
+    Observable<BaseResponse<SimpleFlagEntity>> resetPwd(
+            @Path("tno") String tno,
+            @Field("pwd") String pwd,
+            @Field("newPwd") String newPwd
     );
 
 }

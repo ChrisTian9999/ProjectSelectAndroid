@@ -13,6 +13,7 @@ import android.content.Context;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.entity.SimpleCountEntity;
+import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.entity.StudentEntity;
 
 import rx.Observable;
@@ -68,6 +69,14 @@ public class StudentDataHttpRequest extends HttpRequest {
      */
     public void getProjectBySno(Subscriber<BaseResponse<ProjectEntity>> subscriber, String sno) {
         Observable<BaseResponse<ProjectEntity>> observable = mStudentDataService.getProjectBySno(sno);
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 重置密码
+     */
+    public void resetPwd(Subscriber<BaseResponse<SimpleFlagEntity>> subscriber, String tno, String pwd, String newPwd) {
+        Observable<BaseResponse<SimpleFlagEntity>> observable = mStudentDataService.resetPwd(tno, pwd, newPwd);
         toSubscribe(observable, subscriber);
     }
 

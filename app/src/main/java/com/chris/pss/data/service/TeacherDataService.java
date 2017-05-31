@@ -9,6 +9,7 @@
 package com.chris.pss.data.service;
 
 import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;
 
 import retrofit2.http.Field;
@@ -36,4 +37,15 @@ public interface TeacherDataService {
     @GET("teacher/{tno}")
     Observable<BaseResponse<TeacherLoginResult>> getTchInfo(@Path("tno") String tno);
 
+
+    /**
+     * 修改密码
+     */
+    @FormUrlEncoded
+    @POST("teacher/{tno}/reset_pwd")
+    Observable<BaseResponse<SimpleFlagEntity>> resetPwd(
+        @Path("tno") String tno,
+        @Field("pwd") String pwd,
+        @Field("newPwd") String newPwd
+    );
 }

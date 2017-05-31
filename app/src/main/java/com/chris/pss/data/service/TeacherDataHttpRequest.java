@@ -11,6 +11,7 @@ package com.chris.pss.data.service;
 import android.content.Context;
 
 import com.chris.pss.data.entity.BaseResponse;
+import com.chris.pss.data.entity.SimpleFlagEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;
 
 import rx.Observable;
@@ -47,6 +48,14 @@ public class TeacherDataHttpRequest extends HttpRequest {
      */
     public void getTchInfo(Subscriber<BaseResponse<TeacherLoginResult>> subscriber, String tno) {
         Observable<BaseResponse<TeacherLoginResult>> observable = mTeacherDataService.getTchInfo(tno);
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 重置密码
+     */
+    public void resetPwd(Subscriber<BaseResponse<SimpleFlagEntity>> subscriber, String tno, String pwd, String newPwd) {
+        Observable<BaseResponse<SimpleFlagEntity>> observable = mTeacherDataService.resetPwd(tno, pwd, newPwd);
         toSubscribe(observable, subscriber);
     }
 

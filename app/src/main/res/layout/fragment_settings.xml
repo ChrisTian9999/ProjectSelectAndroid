@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:divider="@drawable/shape_divider"
     android:orientation="vertical"
+    android:paddingTop="16dp"
     android:showDividers="beginning|middle|end"
     >
 
     <TextView
         android:id="@+id/tv_reset_pwd"
         android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
         android:layout_height="50dp"
         android:background="@drawable/bg_item_ripple"
         android:gravity="center"

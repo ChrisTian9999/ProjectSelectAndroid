@@ -32,7 +32,7 @@
     <string name="cancel">取消</string>
     <string name="title_dialog_reset_time">设置时间</string>
     <string name="title_create_project">创建课题</string>
-    <string name="title_reset_pwd">重置密码</string>
+    <string name="title_reset_pwd">修改密码</string>
     <string name="hint_pls_project_name">请输入课题标题</string>
     <string name="hint_pls_project_detail">请输入详情内容</string>
     <string name="create_project">创建课题</string>
@@ -50,6 +50,9 @@
     <string name="menu_info">关于我们</string>
     <string name="about_us_1">指导老师：郁书好\n学生：田志会</string>
     <string name="about_us_2">努力才有进步，付出才有回报!!!</string>
-    <string name="reset_pwd">重置密码</string>
+    <string name="reset_pwd">修改密码</string>
     <string name="log_out">退出登陆</string>
+    <string name="hint_pls_raw_pwd">请输入原密码</string>
+    <string name="hint_pls_new_pwd">请输入新密码</string>
+    <string name="hint_pls_new_pwd2">请再次输入新密码</string>
 </resources>
