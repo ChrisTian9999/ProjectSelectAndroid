@@ -12,6 +12,7 @@ import android.content.Context;
 
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.SimpleFlagEntity;
+import com.chris.pss.data.entity.TeacherEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;
 
 import rx.Observable;
@@ -46,8 +47,8 @@ public class TeacherDataHttpRequest extends HttpRequest {
      * 获得教师的信息，包括学院
      * @param tno 教师号
      */
-    public void getTchInfo(Subscriber<BaseResponse<TeacherLoginResult>> subscriber, String tno) {
-        Observable<BaseResponse<TeacherLoginResult>> observable = mTeacherDataService.getTchInfo(tno);
+    public void getTchInfo(Subscriber<BaseResponse<TeacherEntity>> subscriber, String tno) {
+        Observable<BaseResponse<TeacherEntity>> observable = mTeacherDataService.getTchInfo(tno);
         toSubscribe(observable, subscriber);
     }
 

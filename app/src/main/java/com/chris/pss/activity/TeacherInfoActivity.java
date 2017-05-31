@@ -8,11 +8,10 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
-import com.chris.pss.myutils.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.TeacherEntity;
-import com.chris.pss.data.entity.TeacherLoginResult;
 import com.chris.pss.data.service.TeacherDataHttpRequest;
+import com.chris.pss.myutils.TeacherUtils;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
@@ -70,11 +69,10 @@ public class TeacherInfoActivity extends BaseActivity {
 
     private void fetchTchInfo(String tno) {
         TeacherDataHttpRequest.newInstance(context)
-                .getTchInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TeacherLoginResult>>() {
+                .getTchInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TeacherEntity>>() {
                     @Override
-                    public void onNext(BaseResponse<TeacherLoginResult> response) {
-                        TeacherLoginResult data = response.getData();
-                        initData(data.getTeacher());
+                    public void onNext(BaseResponse<TeacherEntity> response) {
+                        initData(response.getData());
                     }
 
                     @Override

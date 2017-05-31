@@ -10,6 +10,7 @@ package com.chris.pss.data.service;
 
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.SimpleFlagEntity;
+import com.chris.pss.data.entity.TeacherEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;
 
 import retrofit2.http.Field;
@@ -35,7 +36,7 @@ public interface TeacherDataService {
      * 获得教师的基本信息，包括学院
      */
     @GET("teacher/{tno}")
-    Observable<BaseResponse<TeacherLoginResult>> getTchInfo(@Path("tno") String tno);
+    Observable<BaseResponse<TeacherEntity>> getTchInfo(@Path("tno") String tno);
 
 
     /**
