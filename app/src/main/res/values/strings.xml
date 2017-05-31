@@ -50,6 +50,7 @@
     <string name="menu_info">关于我们</string>
     <string name="about_us_1">指导老师：郁书好\n学生：田志会</string>
     <string name="about_us_2">努力才有进步，付出才有回报!!!</string>
+    <string name="about_us_3">衷心地感谢郁书好老师对我的支持和帮助！</string>
     <string name="reset_pwd">修改密码</string>
     <string name="log_out">退出登陆</string>
     <string name="hint_pls_raw_pwd">请输入原密码</string>
