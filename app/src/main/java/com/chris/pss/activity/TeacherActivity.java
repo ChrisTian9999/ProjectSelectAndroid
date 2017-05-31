@@ -17,6 +17,7 @@ import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.fragment.AboutUsFragment;
 import com.chris.pss.fragment.BlankFragment;
 import com.chris.pss.fragment.MajorListFragment;
+import com.chris.pss.fragment.SettingsFragment;
 import com.chris.pss.fragment.TeacherAdminFragment;
 import com.chris.pss.fragment.TeacherNotAdminFragment;
 import com.chris.pss.fragment.TeacherProjectListFragment;
@@ -114,7 +115,8 @@ public class TeacherActivity extends BaseActivity
                 ft.replace(R.id.fl_container, AboutUsFragment.newInstance());
                 break;
             case R.id.nav_settings:
-//                break;
+                ft.replace(R.id.fl_container, SettingsFragment.newInstance());
+                break;
             default:
                 ft.replace(R.id.fl_container, BlankFragment.newInstance());
                 break;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/shape_divider"
+    android:orientation="vertical"
+    android:showDividers="beginning|middle|end"
+    >
+
+    <TextView
+        android:id="@+id/tv_reset_pwd"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_item_ripple"
+        android:gravity="center"
+        android:text="@string/reset_pwd"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_log_out"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_item_ripple"
+        android:gravity="center"
+        android:text="@string/log_out"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"/>
+
+</LinearLayout>
