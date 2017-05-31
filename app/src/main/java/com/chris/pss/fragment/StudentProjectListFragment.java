@@ -15,7 +15,7 @@ import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvProjectAdapter;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.StudentUtils;
+import com.chris.pss.myutils.StudentUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.service.ProjectDataHttpRequest;

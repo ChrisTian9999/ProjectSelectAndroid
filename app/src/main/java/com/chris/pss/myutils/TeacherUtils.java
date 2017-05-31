@@ -1,5 +1,6 @@
-package com.chris.pss.app;
+package com.chris.pss.myutils;
 
+import com.chris.pss.app.IApp;
 import com.chris.pss.data.entity.DepartEntity;
 
 import java.util.ArrayList;

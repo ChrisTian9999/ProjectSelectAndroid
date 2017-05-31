@@ -1,4 +1,6 @@
-package com.chris.pss.app;
+package com.chris.pss.myutils;
+
+import com.chris.pss.app.IApp;
 
 /**
  * Created by zht on 2017/5/30.

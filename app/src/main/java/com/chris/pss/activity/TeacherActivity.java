@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.TeacherUtils;
+import com.chris.pss.myutils.TeacherUtils;
 import com.chris.pss.fragment.AboutUsFragment;
 import com.chris.pss.fragment.BlankFragment;
 import com.chris.pss.fragment.MajorListFragment;

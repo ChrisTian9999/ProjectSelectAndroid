@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.TeacherUtils;
+import com.chris.pss.myutils.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.TeacherEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;

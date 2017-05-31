@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chris.pss.R;
-import com.chris.pss.app.SimpleDisplayUtils;
+import com.chris.pss.myutils.SimpleDisplayUtils;
 import com.chris.pss.data.entity.DepartEntity;
 
 import java.util.List;

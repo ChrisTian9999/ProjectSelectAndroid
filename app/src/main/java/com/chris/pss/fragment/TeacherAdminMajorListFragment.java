@@ -19,7 +19,7 @@ import com.chris.pss.activity.TeacherAdminMajorProjectListActivity;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvMajorListAdapter;
 import com.chris.pss.app.IApp;
-import com.chris.pss.app.TeacherUtils;
+import com.chris.pss.myutils.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.SimpleFlagEntity;

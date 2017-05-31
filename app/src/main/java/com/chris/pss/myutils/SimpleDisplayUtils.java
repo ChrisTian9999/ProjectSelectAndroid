@@ -1,4 +1,4 @@
-package com.chris.pss.app;
+package com.chris.pss.myutils;
 
 import com.chris.pss.utils.EmptyUtils;
 
