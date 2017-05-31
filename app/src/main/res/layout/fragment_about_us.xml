@@ -23,7 +23,7 @@
         android:layout_marginBottom="25dp"
         android:gravity="center_horizontal"
         android:text="@string/about_us_2"
-        android:textColor="@color/colorText"
-        android:textSize="18sp"/>
+        android:textColor="@color/colorTextColorGray"
+        android:textSize="14sp"/>
 
 </RelativeLayout>

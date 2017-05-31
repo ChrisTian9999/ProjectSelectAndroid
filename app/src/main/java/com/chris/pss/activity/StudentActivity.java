@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
 import com.chris.pss.app.StudentUtils;
+import com.chris.pss.fragment.AboutUsFragment;
 import com.chris.pss.fragment.BlankFragment;
 import com.chris.pss.fragment.MajorListFragment;
+import com.chris.pss.fragment.SettingsFragment;
 import com.chris.pss.fragment.StudentProjectListFragment;
 import com.chris.pss.utils.ToastUtils;
 
@@ -99,9 +101,13 @@ public class StudentActivity extends BaseActivity
             case R.id.nav_time:
                 ft.replace(R.id.fl_container, MajorListFragment.newInstance(StudentUtils.getDepartId()));
                 break;
-            case R.id.nav_student_my_project:
-//                break;
             case R.id.nav_settings:
+                ft.replace(R.id.fl_container, SettingsFragment.newInstance());
+                break;
+            case R.id.nav_about_us:
+                ft.replace(R.id.fl_container, AboutUsFragment.newInstance());
+                break;
+            case R.id.nav_student_my_project:
 //                break;
             default:
                 ft.replace(R.id.fl_container, BlankFragment.newInstance());
