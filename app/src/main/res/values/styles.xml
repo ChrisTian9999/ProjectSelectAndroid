@@ -60,4 +60,34 @@
         <item name="android:divider">@color/colorDividerGray</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
+
+    <style name="LlHoriLabelProject">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:background">@drawable/shape_label_project_student</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:dividerPadding">2dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:divider">@drawable/shape_ver_divider_white</item>
+    </style>
+
+    <style name="TvLabelProjectTagName">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="TvLabelProjectTagValue">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
 </resources>

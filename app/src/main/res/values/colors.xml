@@ -21,10 +21,16 @@
     <color name="colorText">#F222</color>
     <!--水波纹的颜色-->
     <color name="colorRipple">#FAAA</color>
+    <color name="colorLightGray">#FAAA</color>
 
     <!--开始结束的时间的颜色-->
     <color name="colorStart">#6F6</color>
     <color name="colorEnd">#F66</color>
-    <color name="colorLightGray">#FAAA</color>
-    <color name="colorChecking">#F22</color>
+
+    <color name="colorLabelProjectChecking">#A33</color>
+
+    <color name="colorLabelProjectTeacher">#3A3</color>
+    <color name="colorLabelProjectStudent">#AA3</color>
+    <color name="colorLabelProjectMajor">#3000</color>
+    <color name="colorLabelProjectDetail">#FEEE</color>
 </resources>

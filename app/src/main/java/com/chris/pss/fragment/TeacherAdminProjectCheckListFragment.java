@@ -15,11 +15,14 @@ import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvProjectAdapter;
 import com.chris.pss.app.IApp;
-import com.chris.pss.myutils.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
 import com.chris.pss.data.entity.SimpleFlagEntity;
+import com.chris.pss.data.entity.StudentEntity;
+import com.chris.pss.data.entity.TeacherEntity;
 import com.chris.pss.data.service.ProjectDataHttpRequest;
+import com.chris.pss.myutils.SimpleJumpUtils;
+import com.chris.pss.myutils.TeacherUtils;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecoration;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
@@ -97,8 +100,16 @@ public class TeacherAdminProjectCheckListFragment extends Fragment {
                     case R.id.rl_project_root:
                         break;
                     case R.id.ll_project_teacher:
+                        TeacherEntity teacher = data.getTeacher();
+                        if (teacher != null) {
+                            SimpleJumpUtils.toTeacher(getContext(), teacher.getTno());
+                        }
                         break;
                     case R.id.ll_project_student:
+                        StudentEntity student = data.getStudent();
+                        if (student != null) {
+                            SimpleJumpUtils.toStudent(getContext(), student.getSno());
+                        }
                         break;
                     case R.id.iv_project_check://通过审核
                         postCheckProject(position, data);

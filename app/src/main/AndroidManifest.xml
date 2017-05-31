@@ -59,7 +59,7 @@
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".activity.TeacherAdminMajorProjectListActivity"
+            android:name=".activity.MajorProjectListActivity"
             android:screenOrientation="portrait"
             />
         <activity

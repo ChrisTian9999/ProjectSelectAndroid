@@ -59,8 +59,8 @@ public class RvProjectAdapter extends BaseRvAdapter<ProjectEntity> {
         TextView mTvProjectStudent;
         @BindView(R.id.ll_project_student)
         LinearLayout mLlProjectStudent;
-        @BindView(R.id.tv_project_checking)
-        TextView mTvProjectChecking;
+        @BindView(R.id.ll_project_checking)
+        LinearLayout mLlProjectChecking;
         @BindView(R.id.iv_project_check)
         ImageView mIvProjectCheck;
         @BindView(R.id.rl_project_root)
@@ -89,7 +89,7 @@ public class RvProjectAdapter extends BaseRvAdapter<ProjectEntity> {
             mTvProjectStudent.setText(student == null ? "无" : (student.getName() + "/" + student.getSno()));
             //审核状态
             boolean isChecking = 1 != data.getIsChecked();
-            mTvProjectChecking.setVisibility(isChecking ? View.VISIBLE : View.GONE);
+            mLlProjectChecking.setVisibility(isChecking ? View.VISIBLE : View.GONE);
             //显示按钮
             mIvProjectCheck.setVisibility(isShowCheck ? View.VISIBLE : View.GONE);
             //

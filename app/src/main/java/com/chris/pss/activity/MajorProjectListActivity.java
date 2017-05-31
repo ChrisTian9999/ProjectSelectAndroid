@@ -16,7 +16,10 @@ import com.chris.pss.app.IApp;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
 import com.chris.pss.data.entity.ProjectEntity;
+import com.chris.pss.data.entity.StudentEntity;
+import com.chris.pss.data.entity.TeacherEntity;
 import com.chris.pss.data.service.ProjectDataHttpRequest;
+import com.chris.pss.myutils.SimpleJumpUtils;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.recyclerview.dividers.HorizontalDividerItemDecoration;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
@@ -27,7 +30,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TeacherAdminMajorProjectListActivity extends BaseActivity {
+public class MajorProjectListActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -80,7 +83,24 @@ public class TeacherAdminMajorProjectListActivity extends BaseActivity {
         return new RvProjectAdapter(this, null, new BaseRvAdapter.OnItemClickListener<ProjectEntity>() {
             @Override
             public void OnItemClick(View view, int position, ProjectEntity data) {
-
+                switch (view.getId()) {
+                    case R.id.rl_project_root:
+                        break;
+                    case R.id.ll_project_teacher:
+                        TeacherEntity teacher = data.getTeacher();
+                        if (teacher != null) {
+                            SimpleJumpUtils.toTeacher(MajorProjectListActivity.this, teacher.getTno());
+                        }
+                        break;
+                    case R.id.ll_project_student:
+                        StudentEntity student = data.getStudent();
+                        if (student != null) {
+                            SimpleJumpUtils.toStudent(MajorProjectListActivity.this, student.getSno());
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }, false);
     }
@@ -124,7 +144,7 @@ public class TeacherAdminMajorProjectListActivity extends BaseActivity {
     }
 
     public static void JumpHere(Context c, DepartEntity entity) {
-        Intent intent = new Intent(c, TeacherAdminMajorProjectListActivity.class);
+        Intent intent = new Intent(c, MajorProjectListActivity.class);
         intent.putExtra("major", entity);
         c.startActivity(intent);
     }

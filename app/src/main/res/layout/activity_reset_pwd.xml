@@ -16,7 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@drawable/shape_divider"
+        android:divider="@drawable/shape_hori_divider"
         android:orientation="vertical"
         android:paddingTop="16dp"
         android:showDividers="beginning|middle">

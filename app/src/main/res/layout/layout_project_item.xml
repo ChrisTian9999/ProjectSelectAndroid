@@ -7,10 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_item_ripple"
-    android:paddingBottom="4dp"
+    android:paddingBottom="8dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="4dp">
+    android:paddingTop="8dp">
 
     <TextView
         android:id="@+id/tv_project_name"
@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorText"
         android:textSize="16sp"
-        android:textStyle="bold"
         tools:text="这是一个标题,这是一个标题,这是一个标题,这是一个标题"/>
 
     <RelativeLayout
@@ -28,15 +27,25 @@
         android:layout_below="@id/tv_project_name"
         android:layout_marginTop="4dp">
 
-        <TextView
-            android:id="@+id/tv_project_major"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/ll_project_major"
+            style="@style/LlHoriLabelProject"
             android:layout_centerVertical="true"
-            android:hint="@string/hint_project_detail"
-            android:textColor="@color/colorText"
-            android:textSize="14sp"
-            tools:text="专业"/>
+            android:background="@drawable/shape_label_project_major"
+            >
+
+            <TextView
+                style="@style/TvLabelProjectTagName"
+                android:text="@string/label_project_major"
+                />
+
+            <TextView
+                android:id="@+id/tv_project_major"
+                style="@style/TvLabelProjectTagValue"
+                tools:text="专业"/>
+
+        </LinearLayout>
 
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/mrb_project_star"
@@ -56,70 +65,74 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_project_major_star"
         android:layout_marginTop="4dp"
-        android:textColor="@color/colorTextColorGray"
+        android:background="@drawable/shape_label_project_detail"
+        android:paddingBottom="2dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/colorLightGray"
         android:textSize="14sp"
         tools:text="这是一个很长的内容，这是一个很长的内容，这是一个很长的内容，这是一个很长的内容，这是一个很长的内容，这是一个很长的内容"/>
 
     <LinearLayout
         android:id="@+id/ll_project_teacher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/LlHoriLabelProject"
         android:layout_below="@id/tv_project_detail"
         android:layout_marginTop="4dp"
-        android:orientation="horizontal">
+        android:background="@drawable/shape_label_project_teacher"
+        >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TvLabelProjectTagName"
             android:text="@string/label_project_teacher"
-            android:textColor="@color/colorTextColorGray"
-            android:textSize="14sp"/>
+            />
 
         <TextView
             android:id="@+id/tv_project_teacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:textSize="14sp"
+            style="@style/TvLabelProjectTagValue"
             tools:text="明明/职称"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_project_student"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/LlHoriLabelProject"
         android:layout_below="@id/ll_project_teacher"
         android:layout_marginTop="4dp"
-        android:orientation="horizontal">
+        android:background="@drawable/shape_label_project_student"
+        >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TvLabelProjectTagName"
             android:text="@string/label_project_student"
-            android:textColor="@color/colorTextColorGray"
-            android:textSize="14sp"/>
+            />
 
         <TextView
             android:id="@+id/tv_project_student"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
-            android:textSize="14sp"
-            tools:text="明明/201301"/>
+            style="@style/TvLabelProjectTagValue"
+            tools:text="明明/职称"/>
 
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/tv_project_checking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_project_checking"
+        style="@style/LlHoriLabelProject"
         android:layout_below="@id/ll_project_student"
         android:layout_marginTop="4dp"
-        android:text="@string/teacher_project_checking"
-        android:textColor="@color/colorChecking"
-        android:textSize="14sp"/>
+        android:background="@drawable/shape_label_project_checking"
+        >
+
+        <TextView
+            style="@style/TvLabelProjectTagName"
+            android:text="@string/label_project_state"
+            />
+
+        <TextView
+            style="@style/TvLabelProjectTagValue"
+            android:text="@string/teacher_project_checking"/>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_project_check"

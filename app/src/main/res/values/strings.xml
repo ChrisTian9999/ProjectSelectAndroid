@@ -37,9 +37,9 @@
     <string name="hint_pls_project_detail">请输入详情内容</string>
     <string name="create_project">创建课题</string>
     <string name="teacher_project_checking">正在审核中</string>
-    <string name="label_project_student">选题：</string>
+    <string name="label_project_student">选题</string>
     <string name="hint_project_detail">无内容</string>
-    <string name="label_project_teacher">出题：</string>
+    <string name="label_project_teacher">出题</string>
     <string name="menu_settings">设置</string>
     <string name="menu_teacher_my_project">我的出题</string>
     <string name="menu_student_all_project">所有课题</string>
@@ -56,4 +56,6 @@
     <string name="hint_pls_new_pwd">请输入新密码</string>
     <string name="hint_pls_new_pwd2">请再次输入新密码</string>
     <string name="title_info_student">学生信息</string>
+    <string name="label_project_state">状态</string>
+    <string name="label_project_major">专业</string>
 </resources>

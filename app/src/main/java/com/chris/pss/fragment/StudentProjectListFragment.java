@@ -15,6 +15,9 @@ import com.chris.pss.R;
 import com.chris.pss.adapter.BaseRvAdapter;
 import com.chris.pss.adapter.RvProjectAdapter;
 import com.chris.pss.app.IApp;
+import com.chris.pss.data.entity.StudentEntity;
+import com.chris.pss.data.entity.TeacherEntity;
+import com.chris.pss.myutils.SimpleJumpUtils;
 import com.chris.pss.myutils.StudentUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.ProjectEntity;
@@ -95,7 +98,17 @@ public class StudentProjectListFragment extends Fragment {
                 switch (view.getId()) {
                     case R.id.rl_project_root:
                         break;
+                    case R.id.ll_project_teacher:
+                        TeacherEntity teacher = data.getTeacher();
+                        if (teacher != null) {
+                            SimpleJumpUtils.toTeacher(getContext(), teacher.getTno());
+                        }
+                        break;
                     case R.id.ll_project_student:
+                        StudentEntity student = data.getStudent();
+                        if (student != null) {
+                            SimpleJumpUtils.toStudent(getContext(), student.getSno());
+                        }
                         break;
                     case R.id.iv_project_check:
                         postSelectProject(position, data);
