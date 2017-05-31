@@ -32,4 +32,10 @@ public class TeacherUtils {
         return IApp.teacher.getIsAdmin() == 1;
     }
 
+    /**
+     * 当前是教师登陆，而且教师编号相等
+     */
+    public static boolean isMe(String tno) {
+        return !IApp.isStudent && IApp.teacher.getTno().equals(tno);
+    }
 }

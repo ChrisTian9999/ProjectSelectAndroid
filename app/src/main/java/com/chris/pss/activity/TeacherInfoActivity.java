@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
+import com.chris.pss.app.TeacherUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.TeacherEntity;
 import com.chris.pss.data.entity.TeacherLoginResult;
@@ -54,18 +55,13 @@ public class TeacherInfoActivity extends BaseActivity {
         if (intent != null) {
             mTno = intent.getStringExtra("tno");
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         initViews();
     }
 
     private void initViews() {
         initToolBar(mToolbar);
 
-        if (IApp.teacher.getTno().equals(mTno)) {//是当前用户
+        if (TeacherUtils.isMe(mTno)) {//是当前用户
             initData(IApp.teacher);
         } else { //不是当前用户
             fetchTchInfo(mTno);

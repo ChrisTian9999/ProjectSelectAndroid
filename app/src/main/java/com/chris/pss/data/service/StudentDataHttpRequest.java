@@ -48,6 +48,15 @@ public class StudentDataHttpRequest extends HttpRequest {
     }
 
     /**
+     * 获得学生的信息
+     * @param sno 学号
+     */
+    public void getStuInfo(Subscriber<BaseResponse<StudentEntity>> subscriber, String sno) {
+        Observable<BaseResponse<StudentEntity>> observable = mStudentDataService.getStuInfo(sno);
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
      * 通知在线，并返回当前在线学生数
      */
     public void postOnline(Subscriber<BaseResponse<SimpleCountEntity>> subscriber, String sno) {

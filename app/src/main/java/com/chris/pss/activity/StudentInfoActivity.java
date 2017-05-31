@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import com.chris.pss.R;
 import com.chris.pss.app.IApp;
+import com.chris.pss.app.StudentUtils;
 import com.chris.pss.data.entity.BaseResponse;
 import com.chris.pss.data.entity.DepartEntity;
-import com.chris.pss.data.entity.TeacherEntity;
-import com.chris.pss.data.entity.TeacherLoginResult;
-import com.chris.pss.data.service.TeacherDataHttpRequest;
+import com.chris.pss.data.entity.StudentEntity;
+import com.chris.pss.data.service.StudentDataHttpRequest;
 import com.chris.pss.utils.ToastUtils;
 import com.chris.pss.widgets.subscribers.GeneralSubscriber;
 import com.chris.pss.widgets.subscribers.ProgressSubscriber;
@@ -24,23 +24,23 @@ public class StudentInfoActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.tv_info_tno)
-    TextView mTvInfoTno;
+    @BindView(R.id.tv_info_sno)
+    TextView mTvInfoSno;
     @BindView(R.id.tv_info_name)
     TextView mTvInfoName;
     @BindView(R.id.tv_info_gender)
     TextView mTvInfoGender;
-    @BindView(R.id.tv_info_zhicheng)
-    TextView mTvInfoZhicheng;
     @BindView(R.id.tv_info_depart)
     TextView mTvInfoDepart;
+    @BindView(R.id.tv_info_major)
+    TextView mTvInfoMajor;
     @BindView(R.id.tv_info_tel)
     TextView mTvInfoTel;
-    @BindView(R.id.tv_info_email)
-    TextView mTvInfoEmail;
-    @BindView(R.id.tv_info_is_admin)
-    TextView mTvInfoIsAdmin;
-    private String mTno;
+    @BindView(R.id.tv_info_classname)
+    TextView mTvInfoClassname;
+
+
+    private String mSno;
 
 
     @Override
@@ -51,59 +51,55 @@ public class StudentInfoActivity extends BaseActivity {
 
         Intent intent = getIntent();
         if (intent != null) {
-            mTno = intent.getStringExtra("tno");
+            mSno = intent.getStringExtra("sno");
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         initViews();
     }
+
 
     private void initViews() {
         initToolBar(mToolbar);
 
-        if (IApp.teacher.getTno().equals(mTno)) {//是当前用户
-            initData(IApp.teacher);
+        if (StudentUtils.isMe(mSno)) {//是当前用户
+            initData(IApp.student);
         } else { //不是当前用户
-            fetchTchInfo(mTno);
+            fetchStuInfo(mSno);
         }
     }
 
-    private void fetchTchInfo(String tno) {
-        TeacherDataHttpRequest.newInstance(IApp.context)
-                .getTchInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<TeacherLoginResult>>() {
+    private void fetchStuInfo(String sno) {
+        StudentDataHttpRequest.newInstance(IApp.context)
+                .getStuInfo(new ProgressSubscriber<>(new GeneralSubscriber<BaseResponse<StudentEntity>>() {
                     @Override
-                    public void onNext(BaseResponse<TeacherLoginResult> response) {
-                        TeacherLoginResult data = response.getData();
-                        initData(data.getTeacher());
+                    public void onNext(BaseResponse<StudentEntity> response) {
+                        initData(response.getData());
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         ToastUtils.showToast(e.getMessage());
                     }
-                }, this), tno);
+                }, this), sno);
     }
 
 
-    private void initData(TeacherEntity tch) {
-        if (tch == null) {
+    private void initData(StudentEntity stu) {
+        if (stu == null) {
             ToastUtils.showToast("无数据");
             return;
         }
-        mTvInfoTno.setText(tch.getTno());
-        mTvInfoName.setText(tch.getName());
-        mTvInfoGender.setText(tch.getGender() == 0 ? R.string.gender_girl : R.string.gender_boy);
-        mTvInfoZhicheng.setText(tch.getZhicheng());
+        mTvInfoSno.setText(stu.getSno());
+        mTvInfoName.setText(stu.getName());
+        mTvInfoGender.setText(stu.getGender() == 0 ? R.string.gender_girl : R.string.gender_boy);
         //
-        mTvInfoTel.setText(tch.getTel());
-        mTvInfoEmail.setText(tch.getEmail());
-        mTvInfoIsAdmin.setText(tch.getIsAdmin() == 1 ? R.string.yes : R.string.no);
-        //所在学院的信息
-        DepartEntity depart = tch.getDepart();
-        mTvInfoDepart.setText(depart == null ? "无学院信息" : depart.getName());
+        mTvInfoTel.setText(stu.getTel());
+        mTvInfoClassname.setText(stu.getClassname());
+        //所在学院和专业的信息
+        DepartEntity depart = stu.getMajor();
+        if (depart != null) {
+            mTvInfoDepart.setText(depart.getName());
+            mTvInfoMajor.setText(depart.getParent().getName());
+        }
     }
 
 

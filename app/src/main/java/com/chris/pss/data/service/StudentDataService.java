@@ -35,6 +35,14 @@ public interface StudentDataService {
     );
 
     /**
+     * 学生信息
+     */
+    @GET("student/{sno}")
+    Observable<BaseResponse<StudentEntity>> getStuInfo(
+            @Path("sno") String sno
+    );
+
+    /**
      * 通知服务器在线，并返回当前在线学生数
      */
     @FormUrlEncoded
